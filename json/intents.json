@@ -1,0 +1,252 @@
+[
+   {
+      "tag": "course",
+      "patterns": [
+         "list of courses",
+         "list of courses offered",
+         "list of courses offered in",
+         "what are the courses offered in your college?",
+         "courses?",
+         "courses offered",
+         "courses offered in (your univrsity(UNI) name)",
+         "courses you offer",
+         "branches?",
+         "courses available at UNI?",
+         "branches available at your college?",
+         "what are the courses in UNI?",
+         "what are branches in UNI?",
+         "what are courses in UNI?",
+         "branches available in UNI?",
+         "can you tell me the courses available in UNI?",
+         "can you tell me the branches available in UNI?",
+         "computer engineering?",
+         "computer",
+         "Computer engineering?",
+         "it",
+         "IT",
+         "Information Technology",
+         "AI/Ml",
+         "Mechanical engineering",
+         "Chemical engineering",
+         "Civil engineering"
+      ],
+      "responses": [
+         "Our university offers Information Technology, computer Engineering, Mechanical engineering,Chemical engineering, Civil engineering and extc Engineering."
+      ]
+   },
+   {
+      "tag": "hostel",
+      "patterns": [
+         "hostel facility",
+         "hostel servive",
+         "hostel location",
+         "hostel address",
+         "hostel facilities",
+         "hostel fees",
+         "Does college provide hostel",
+         "Is there any hostel",
+         "Where is hostel",
+         "do you have hostel",
+         "do you guys have hostel",
+         "hostel",
+         "hostel capacity",
+         "what is the hostel fee",
+         "how to get in hostel",
+         "what is the hostel address",
+         "how far is hostel from college",
+         "hostel college distance",
+         "where is the hostel",
+         "how big is the hostel",
+         "distance between college and hostel",
+         "distance between hostel and college"
+      ],
+      "responses": [
+         "For hostel detail visit <a target=\"_blank\" href=\"ADD YOUR HOSTEL DETAIL PDF LINK OR ANY INFORMATION LINK OR ADD YOU OWN ANSWERS\"> here</a>"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "event",
+      "patterns": [
+         "events organised",
+         "list of events",
+         "list of events organised in college",
+         "list of events conducted in college",
+         "What events are conducted in college",
+         "Are there any event held at college",
+         "Events?",
+         "functions",
+         "what are the events",
+         "tell me about events",
+         "what about events"
+      ],
+      "responses": [
+         "For event detail visit <a target=\"_blank\" href=\"ADD YOUR FUNCTIONS LINK OR YOUR OWN RESPONSE\"> here</a>"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "placement",
+      "patterns": [
+         "What is college placement",
+         "Which companies visit in college",
+         "What is average package",
+         "companies visit",
+         "package",
+         "About placement",
+         "placement",
+         "recruitment",
+         "companies"
+      ],
+      "responses": [
+         "To know about placement visit <a target=\"_blank\" href=\"PLACEMENT INFORMATION LINK FROM YOUR UNIVERSITY WEBSITE IF THEY HAVE\">here</a>"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "principal",
+      "patterns": [
+         "what is the name of principal",
+         "whatv is the principal name",
+         "principal name",
+         "Who is college principal",
+         "Where is principal's office",
+         "principal",
+         "name of principal"
+      ],
+      "responses": [
+         "XYZ is college principal and if you need any help then call your branch hod first.That is more appropriate"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "scholarship",
+      "patterns": [
+         "scholarship",
+         "Is scholarship available",
+         "scholarship engineering",
+         "scholarship it",
+         "scholarship ce",
+         "scholarship mechanical",
+         "scholarship civil",
+         "scholarship chemical",
+         "scholarship for AI/ML",
+         "available scholarships",
+         "scholarship for computer engineering",
+         "scholarship for IT engineering",
+         "scholarship for mechanical engineering",
+         "scholarship for civil engineering",
+         "scholarship for chemical engineering",
+         "list of scholarship",
+         "comps scholarship",
+         "IT scholarship",
+         "mechanical scholarship",
+         "civil scholarship",
+         "chemical scholarship",
+         "automobile scholarship",
+         "first year scholarship",
+         "second year scholarship",
+         "third year scholarship",
+         "fourth year scholarship"
+      ],
+      "responses": [
+         "Many government scholarships are supported by our university. For details and updates visit <a target=\"_blank\" href=\"(SCHOLARSHIP DETAILS LINK)\">here</a>"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "committee",
+      "patterns": [
+         "what are the different committe in college",
+         "different committee in college",
+         "Are there any committee in college",
+         "Give me committee details",
+         "committee",
+         "how many committee are there in college"
+      ],
+      "responses": [
+         "For the various committe in college contact this number: ADD NUMBER"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "ragging",
+      "patterns": [
+         "ragging",
+         "is ragging practice active in college",
+         "does college have any antiragging facility",
+         "is there any ragging cases",
+         "is ragging done here",
+         "ragging against",
+         "antiragging facility",
+         "ragging juniors",
+         "ragging history",
+         "ragging incidents"
+      ],
+      "responses": [
+         "We are Proud to tell you that our college provides ragging free environment, and we have strict rules against ragging"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "hod",
+      "patterns": [
+         "hod",
+         "hod name",
+         "who is the hod"
+      ],
+      "responses": [
+         "HODs differ for each branch, please be more specific like: (HOD it)"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "best_ngo",
+      "patterns": [
+         "best ngo",
+         "best ngo in the world",
+         "what is the most famous ngo in India",
+         "what is Unicef",
+         "is unicef the best ngo",
+         "is unicef famous in India"
+      ],
+      "responses": [
+         "UNICEF is the United Nations Children's Fund, working in the world's toughest places to reach the most disadvantaged children and adolescents – and to protect the rights of every child, everywhere",
+         "UNICEF is the most famous ngo in the world"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "ngo_task",
+      "patterns": [
+         "what does ngo do",
+         "what are the things ngo do",
+         "what can ngos do for me",
+         "what can ngo do for me",
+         "how can ngo help me",
+         "why should I go to ngos"
+      ],
+      "responses": [
+         "NGOs, or non-governmental organizations, play a major role in international development, aid, and philanthropy.NGOs can be formed by any group of people that wants to carry out missions in the public interest. They can have staff and budgets. NGOs can operate internationally. ",
+         "You can ask me questions regarding ngos, and i will try to answer them"
+      ],
+      "context_set": ""
+   },
+   {
+      "tag": "ngo_info",
+      "patterns": [
+         "ngo",
+         "is ngo a shop",
+         "does ngo exist in mumbai",
+         "what is ngo in India",
+         "what is ngo called",
+         "what is ngo meaning",
+         "where is ngo facility",
+         "ngo history"
+      ],
+      "responses": [
+         "NGO means Non Governmental Organization. It is a non profit organization that functions on donation money and solely for betterment of under previledged people"
+      ],
+      "context_set": ""
+   }
+]

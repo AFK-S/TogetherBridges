@@ -4,6 +4,7 @@ import { Register as RegisterNGO } from "../controllers/NGO.js";
 import { Register as RegisterEvent } from "../controllers/Event.js";
 import { Register as RegisterDonate } from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
+import chatbot_response from "../controllers/ChatBot.js";
 
 const router = express.Router();
 
@@ -14,5 +15,17 @@ router.post("/register/volunteer/:ngo_id", RegisterVolunteer);
 router.post("/register/donate/:ngo_id", RegisterDonate);
 
 router.post("/register/event", RegisterEvent);
+router.get("/chatbot/:message", async (req, res) => {
+  const { message } = req.params;
+  try {
+    const response = await chatbot_response(message);
+    res.send(response);
+  } catch (error) {
+    res.status(400).json({
+      type: "error",
+      message: error.message,
+    });
+  }
+});
 
 export default router;
