@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slice/IsLoggedInSlice";
 import axios from "axios";
 
 const NGO = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
@@ -43,6 +46,7 @@ const NGO = () => {
         password: "",
         cPassword: "",
       });
+      dispatch(login());
     } catch (error) {
       console.log(error);
     }
