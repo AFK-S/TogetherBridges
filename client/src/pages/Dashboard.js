@@ -1,9 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import {useDispatch} from 'react-redux'
+import { logout } from '../store/slice/IsLoggedInSlice'
+
 
 const Dashboard = () => {
   const user = useSelector((state) => state.UserSlice);
+  const dispatch = useDispatch()
+
+  const logoutBtn = () => {
+      dispatch(logout())
+  }
+
 
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
@@ -34,12 +43,7 @@ const Dashboard = () => {
                 >
                   Edit Profile
                 </NavLink>
-                <a
-                  href="#"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 f ocus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
-                >
-                  Logout
-                </a>
+                <button type="button" className="px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={logoutBtn}>Logout</button>
               </div>
             </div>
           </div>
