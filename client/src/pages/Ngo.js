@@ -30,14 +30,14 @@ const Ngo = () => {
               }`}</h1>
               <p
                 href="#"
-                class="inline-flex items-center text-blue-600 hover:underline cursor-pointer mt-2"
+                className="inline-flex items-center text-blue-600 hover:underline cursor-pointer mt-2"
                 onClick={() => {
                   window.open(data[params.id].website);
                 }}
               >
                 Visit our website
                 <svg
-                  class="w-5 h-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
