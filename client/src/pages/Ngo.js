@@ -18,7 +18,7 @@ const Ngo = () => {
       <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
         <div className="flex my-5">
           <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-            Mumbai
+            {data[params.id].place}
           </span>
         </div>
 

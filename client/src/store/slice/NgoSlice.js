@@ -8,6 +8,7 @@ const NgoSlice = createSlice({
             "address": "Address 1",
             "phone": "1234567890",
             "id": 0,
+            "place": "Mumbai",
             "description":
                 "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
         },
@@ -16,6 +17,7 @@ const NgoSlice = createSlice({
             "address": "Address 2",
             "phone": "1234567890",
             "id": 1,
+            "place": "Pune",
             "description":
                 "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
         },
@@ -24,6 +26,7 @@ const NgoSlice = createSlice({
             "address": "Address 3",
             "phone": "1234567890",
             "id": 2,
+            "place": "Nashik",
             "description":
                 "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
         }
