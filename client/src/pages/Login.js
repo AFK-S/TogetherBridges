@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login as ReduxLogin } from "../store/slice/IsLoggedInSlice";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { login as ReduxLogin } from "../store/slice/IsLoggedInSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
