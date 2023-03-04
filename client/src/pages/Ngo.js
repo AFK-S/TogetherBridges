@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import EventCard from "../components/EventCard";
 
 const Ngo = () => {
   const data = useSelector((state) => state.NgoSlice);
+  const events = useSelector((state) => state.EventsSlice);
 
   const [tabCount, setTabCount] = useState(0);
 
@@ -147,8 +149,8 @@ const Ngo = () => {
                   Profile tab's associated content
                 </strong>
                 . Clicking another tab will toggle the visibility of this one
-                for the next. The tab JavaScript swaps classes to control the
-                content visibility and styling.
+                htmlFor the next. The tab JavaScript swaps classes to control
+                the content visibility and styling.
               </p>
             </div>
             <div
@@ -159,15 +161,12 @@ const Ngo = () => {
               role="tabpanel"
               aria-labelledby="dashboard-tab"
             >
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                This is some placeholder content the{" "}
-                <strong className="font-medium text-gray-800 dark:text-white">
-                  Dashboard tab's associated content
-                </strong>
-                . Clicking another tab will toggle the visibility of this one
-                for the next. The tab JavaScript swaps classes to control the
-                content visibility and styling.
-              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
+                {events.upcoming.map((event) => {
+                  const { name, description } = event;
+                  return <EventCard name={name} description={description} />;
+                })}
+              </div>
             </div>
             <div
               className={` ${
@@ -178,82 +177,10 @@ const Ngo = () => {
               aria-labelledby="settings-tab"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                <div
-                  href="#"
-                  className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                  <img
-                    className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src="/docs/images/blog/image-4.jpg"
-                    alt=""
-                  />
-                  <div className="flex flex-col justify-between p-4 leading-normal">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      Noteworthy technology acquisitions 2021
-                    </h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Here are the biggest enterprise technology acquisitions of
-                      2021 so far, in reverse chronological order.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  href="#"
-                  className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                  <img
-                    className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src="/docs/images/blog/image-4.jpg"
-                    alt=""
-                  />
-                  <div className="flex flex-col justify-between p-4 leading-normal">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      Noteworthy technology acquisitions 2021
-                    </h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Here are the biggest enterprise technology acquisitions of
-                      2021 so far, in reverse chronological order.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  href="#"
-                  className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                  <img
-                    className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src="/docs/images/blog/image-4.jpg"
-                    alt=""
-                  />
-                  <div className="flex flex-col justify-between p-4 leading-normal">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      Noteworthy technology acquisitions 2021
-                    </h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Here are the biggest enterprise technology acquisitions of
-                      2021 so far, in reverse chronological order.
-                    </p>
-                  </div>
-                </div>
-                <div
-                  href="#"
-                  className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                  <img
-                    className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                    src="/docs/images/blog/image-4.jpg"
-                    alt=""
-                  />
-                  <div className="flex flex-col justify-between p-4 leading-normal">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      Noteworthy technology acquisitions 2021
-                    </h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      Here are the biggest enterprise technology acquisitions of
-                      2021 so far, in reverse chronological order.
-                    </p>
-                  </div>
-                </div>
+                {events.previous.map((event) => {
+                  const { name, description } = event;
+                  return <EventCard name={name} description={description} />;
+                })}
               </div>
             </div>
           </div>
