@@ -133,6 +133,17 @@ const Ngo = () => {
                 Previous
               </p>
             </li>
+            <li className="mr-2" onClick={() => changeTab(3)}>
+              <p
+                className={` ${
+                  tabCount === 3
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    : ""
+                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+              >
+                Videos
+              </p>
+            </li>
           </ul>
           <div id="myTabContent" className="my-3">
             <div
@@ -179,6 +190,24 @@ const Ngo = () => {
                   return <EventCard name={name} description={description} />;
                 })}
               </div>
+            </div>
+            <div
+              className={` ${
+                tabCount === 3 ? "" : "hidden"
+              } p-4 rounded-lg  dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              id="settings"
+              role="tabpanel"
+              aria-labelledby="settings-tab"
+            >
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/sCPREA5NFTU"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
           </div>
         </div>
