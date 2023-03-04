@@ -150,8 +150,8 @@ const Ngo = () => {
                   Profile tab's associated content
                 </strong>
                 . Clicking another tab will toggle the visibility of this one
-                htmlFor the next. The tab JavaScript swaps classes to control
-                the content visibility and styling.
+                htmlFor the next. The tab JavaScript swaps classNameees to
+                control the content visibility and styling.
               </p>
             </div>
             <div

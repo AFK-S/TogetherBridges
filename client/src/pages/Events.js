@@ -12,11 +12,11 @@ const Events = () => {
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-0">
       <div className="tabs my-16">
-        <ul class=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-          <li class="w-full" onClick={() => changeTab(0)}>
+        <ul className=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+          <li className="w-full" onClick={() => changeTab(0)}>
             <a
               href="#"
-              class={`inline-block w-full p-4 text-gray-700 rounded-l-lg focus:ring-4 focus:ring-blue-300  focus:outline-none dark:bg-gray-700 dark:text-white ${
+              className={`inline-block w-full p-4 text-gray-700 rounded-l-lg focus:ring-4 focus:ring-blue-300  focus:outline-none dark:bg-gray-700 dark:text-white ${
                 tabCount === 0 ? "active bg-gray-200  text-gray-900" : ""
               }`}
               aria-current="page"
@@ -24,10 +24,10 @@ const Events = () => {
               Upcoming Events
             </a>
           </li>
-          <li class="w-full" onClick={() => changeTab(1)}>
+          <li className="w-full" onClick={() => changeTab(1)}>
             <a
               href="#"
-              class={`inline-block w-full p-4 text-gray-700 rounded-r-lg focus:ring-4 focus:ring-blue-300  focus:outline-none dark:bg-gray-700 dark:text-white ${
+              className={`inline-block w-full p-4 text-gray-700 rounded-r-lg focus:ring-4 focus:ring-blue-300  focus:outline-none dark:bg-gray-700 dark:text-white ${
                 tabCount === 1 ? "active bg-gray-200  text-gray-900" : ""
               }`}
             >

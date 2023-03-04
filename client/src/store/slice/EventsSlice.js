@@ -16,13 +16,27 @@ const EventsSlice = createSlice({
       },
       { name: "HEllo2", description: "prev2" },
     ],
+
+    announcements: [
+      {
+        title:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, provident? Minima quasi blanditiis quas inventore?",
+      },
+      {
+        title:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, provident? Minima quasi blanditiis quas inventore?",
+      },
+    ],
   },
   reducers: {
     addEvent: (state, action) => {
       state.upcoming.push(action.payload);
     },
+    addAnnouncement: (state, action) => {
+      state.announcements.push(action.payload);
+    },
   },
 });
 
 export { EventsSlice };
-export const { addEvent } = EventsSlice.actions;
+export const { addEvent, addAnnouncement } = EventsSlice.actions;
