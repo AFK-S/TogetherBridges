@@ -7,15 +7,14 @@ import { Login, Logout } from '../controllers/index.js'
 
 const router = express.Router()
 
-router.post('/register/volunteer', RegisterVolunteer)
-
 router.post('/register/ngo', RegisterNGO)
+router.post('/login', Login)
+router.get('/logout', Logout)
+
+router.post('/register/volunteer/:ngo_id', RegisterVolunteer)
 
 router.post('/register/event', RegisterEvent)
 
 router.post('/register/donate', RegisterDonate)
-
-router.post('/login', Login)
-router.get('/logout', Logout)
 
 export default router

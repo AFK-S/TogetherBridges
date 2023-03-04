@@ -1,22 +1,25 @@
-import User from "../model/User.js";
 import NGO from "../model/NGO.js";
 
 const Register = async (req, res) => {
-  const { name, email_address, phone_number, about, password } = req.body;
-
-  const user = new User({
+  const {
     name,
     email_address,
     phone_number,
-    password,
-  });
-  const ngo = new NGO({
-    user_id: user._id,
+    in_charge_name,
+    address,
     about,
-  });
+    password,
+  } = req.body;
   try {
-    await Promise.all([user.validate(), ngo.validate()]);
-    await Promise.all([user.save(), ngo.save()]);
+    const response = await NGO.create({
+      name,
+      email_address,
+      phone_number,
+      in_charge_name,
+      address,
+      about,
+      password,
+    });
     return res.cookie("user_id", response._id).json({
       type: "success",
       message: "Registered Successfully",
