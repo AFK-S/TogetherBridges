@@ -1,15 +1,13 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../../context/StateContext";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../store/slice/IsLoggedInSlice";
 import axios from "axios";
 
 const NGO = () => {
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
+  const { setIsLogin, setAlert } = useContext(StateContext);
   const [register, setRegister] = useState({
     name: "",
     email_address: "",
@@ -55,9 +53,14 @@ const NGO = () => {
         password: "",
         cPassword: "",
       });
-      dispatch(login());
+      setIsLogin(true);
     } catch (error) {
       console.log(error);
+      setAlert({
+        isAlert: true,
+        type: error.response.data.type,
+        message: error.response.data.message,
+      });
     }
     setIsLoading(false);
   };
