@@ -11,7 +11,7 @@ const Auth = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/ngo/registration" element={<Register />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/ngo" element={<NGOcard />} />
       <Route path="/ngo/:id" element={<Ngo />} />
       <Route path="*" element={<Navigate to="/" />} />

@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Dashboard from "../pages/Dashboard";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Ngo from "../pages/Ngo";
 import NGOcard from "../components/NGOcard";
 import EditProfile from "../pages/EditProfile";
@@ -13,7 +13,9 @@ const Pages = () => {
       <Navbar />
       <Routes>
         <Route path="/" index element={<Dashboard />} />
-        <Route path="/ngo" index element={<NGOcard />} />
+        <Route path="/login" element={<Navigate to="/" />} />
+        <Route path="/register" element={<Navigate to="/" />} />
+        <Route path="/ngo" element={<NGOcard />} />
         <Route path="/events" element={<Events />} />
         <Route path="/ngo/:id" element={<Ngo />} />
         <Route path="/editprofile" element={<EditProfile />} />
