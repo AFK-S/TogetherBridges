@@ -1,8 +1,5 @@
 import React from "react";
 import "./NGOcard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-
 const ngolist = [
   {
     name: "NGO 1",
@@ -39,13 +36,13 @@ const NGOcard = () => {
           <div className="description">{ngolist.description}</div>
           <div className="contact-info">
             <div className="icon">
-              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <i class="fa-solid fa-location-dot"></i>
             </div>
             <div className="address">{ngolist.address}</div>
           </div>
           <div className="contact-info">
             <div className="icon">
-              <FontAwesomeIcon icon={faPhone} />
+              <i class="fa-solid fa-phone"></i>
             </div>
             <div className="phonenumber">{ngolist.phone}</div>
           </div>
