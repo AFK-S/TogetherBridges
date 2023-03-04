@@ -5,6 +5,7 @@ import { Register as RegisterEvent } from "../controllers/Event.js";
 import { Register as RegisterDonate } from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
 import chatbot_response from "../controllers/ChatBot.js";
+import { GetNGOs } from "../controllers/NGO.js";
 
 const router = express.Router();
 
@@ -27,5 +28,6 @@ router.get("/chatbot/:message", async (req, res) => {
     });
   }
 });
+router.get("/ngos", GetNGOs);
 
 export default router;

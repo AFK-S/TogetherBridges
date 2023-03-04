@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { fetchNgos, NgoSlice } from "../store/slice/NgoSlice";
 import "./NGOcard.css";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 const NGOcard = () => {
-  const ngolist = useSelector((state) => state.NgoSlice);
+  const { ngos, loading } = useSelector((state) => state.NgoSlice);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchNgos());
+  }, []);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14">
-      {ngolist.map((ngolist) => (
-        <NavLink to={`/ngo/${ngolist.id}`}>
+      {ngos.map((ngo) => (
+        <Link to={`/ngo/${ngo._id}`} key={ngo._id}>
           <div className="card shadow-xl rounded-xl">
-            <div className="ngoname">{ngolist.name}</div>
-            <div className="description">{ngolist.description}</div>
+            <div className="ngoname">{ngo.name}</div>
+            <div className="description">{ngo.description}</div>
             <div className="contact-info">
               <div className="icon">
                 <i className="fa-solid fa-location-dot"></i>
               </div>
-              <div className="address">{ngolist.address}</div>
+              <div className="address">{ngo.address}</div>
             </div>
             <div className="contact-info">
               <div className="icon">
                 <i className="fa-solid fa-phone"></i>
               </div>
-              <div className="phonenumber">{ngolist.phone}</div>
+              <div className="phonenumber">{ngo.phone_number}</div>
             </div>
           </div>
-        </NavLink>
+        </Link>
       ))}
     </div>
   );

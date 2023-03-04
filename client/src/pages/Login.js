@@ -120,10 +120,7 @@ const Login = () => {
           </button>
           <div className="text-sm text-center font-medium text-gray-500">
             Not registered?{" "}
-            <Link
-              to="ngo/registration"
-              className="text-blue-700 hover:underline "
-            >
+            <Link to="/register" className="text-blue-700 hover:underline ">
               Create account
             </Link>
           </div>

@@ -43,6 +43,12 @@ const NGOSchema = new Schema(
       ],
       required: [true, "Please add a In Charge Name"],
     },
+    place: {
+      type: String,
+      trim: true,
+      match: [/^[a-zA-Z ]+$/, (props) => `${props.value} is not a valid place`],
+      required: [true, "Please add a Place"],
+    },
     address: {
       type: String,
       trim: true,
@@ -52,6 +58,23 @@ const NGOSchema = new Schema(
       type: String,
       trim: true,
       required: [true, "Please add a About NGO"],
+    },
+    website_url: {
+      type: String,
+      trim: true,
+      required: [true, "Please add a Website URL"],
+    },
+    youtube_url: {
+      type: String,
+      trim: true,
+    },
+    facebook_url: {
+      type: String,
+      trim: true,
+    },
+    instagram_url: {
+      type: String,
+      trim: true,
     },
     password: {
       type: String,

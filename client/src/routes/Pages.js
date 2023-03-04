@@ -17,7 +17,7 @@ const Pages = () => {
         <Route path="/register" element={<Navigate to="/" />} />
         <Route path="/ngo" element={<NGOcard />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/ngo/:id" element={<Ngo />} />
+        <Route path="/ngo/:ngo_id" element={<Ngo />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route
           path="*"

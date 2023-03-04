@@ -1,40 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchNgos = createAsyncThunk("/api/ngos", async () => {
+  try {
+    const { data } = await axios.get("/api/ngos");
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const NgoSlice = createSlice({
   name: "ngo",
-  initialState: [
-    {
-      name: "NGO 0",
-      address: "Address 1",
-      phone: "1234567890",
-      id: 0,
-      place: "Mumbai",
-      website: "https://www.google.com",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
+  initialState: {
+    ngos: [],
+    loading: false,
+  },
+  extraReducers: {
+    [fetchNgos.pending]: (state) => {
+      state.loading = true;
     },
-    {
-      name: "NGO 1",
-      address: "Address 2",
-      phone: "1234567890",
-      id: 1,
-      place: "Pune",
-      website: "https://instagram.com/",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
+    [fetchNgos.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.ngos = action.payload;
     },
-    {
-      name: "NGO 2",
-      address: "Address 3",
-      phone: "1234567890",
-      id: 2,
-      place: "Nashik",
-      website: "https://www.google.com",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
+    [fetchNgos.rejected]: (state) => {
+      state.loading = false;
     },
-  ],
-  reducers: {},
+  },
 });
 
 export { NgoSlice };
+// export const { setNgos } = NgoSlice.actions;
