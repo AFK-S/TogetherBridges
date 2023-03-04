@@ -1,32 +1,58 @@
-import User from "../model/User.js";
 import NGO from "../model/NGO.js";
+import { Register_NGO } from "./mailer.js";
 
 const Register = async (req, res) => {
-  const { name, email_address, type_of_user, phone_number, about, password } =
-    req.body;
-
-  const user = new User({
+  const {
     name,
     email_address,
-    type_of_user,
     phone_number,
-    password,
-  });
-  const volunteer = new NGO({
-    user_id: user._id,
+    in_charge_name,
+    address,
     about,
-  });
+    password,
+  } = req.body;
   try {
-    await Promise.all([user.validate(), volunteer.validate()]);
-    await Promise.all([user.save(), volunteer.save()]);
-    return res.cookie("user_id", response._id).json({
+    const response = await NGO.create({
+      name,
+      email_address,
+      phone_number,
+      in_charge_name,
+      address,
+      about,
+      password,
+    });
+    res.cookie("user_id", response._id).json({
       type: "success",
       message: "Registered Successfully",
     });
+    Register_NGO(name, email_address, password);
   } catch (err) {
     console.error(err);
     res.status(400).json({ type: "error", message: err.message });
   }
 };
 
-export { Register };
+const GetNGOS = async (req, res) => {
+  try {
+    const response = await NGO.find().lean();
+    return res.send(response);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ type: "error", message: err.message });
+  }
+};
+
+const GetNGO = async (req, res) => {
+  const { ngo_id } = req.params;
+  try {
+    const response = await NGO.find({
+      ngo_id: ngo_id,
+    }).lean();
+    return res.send(response);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ type: "error", message: err.message });
+  }
+};
+
+export { Register, GetNGOS, GetNGO };

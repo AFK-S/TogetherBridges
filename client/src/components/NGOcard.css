@@ -1,0 +1,25 @@
+.card {
+  padding: 2rem;
+}
+
+.ngoname {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.description {
+  /* width: 50%; */
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.contact-info {
+  margin-top: 20px;
+  display: flex;
+}
+
+.address,
+.phonenumber {
+  font-size: 15px;
+  margin-left: 5px;
+}

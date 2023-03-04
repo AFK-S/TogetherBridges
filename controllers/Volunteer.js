@@ -1,33 +1,17 @@
-import User from "../model/User.js";
 import Volunteer from "../model/Volunteer.js";
 
 const Register = async (req, res) => {
-  const {
-    name,
-    email_address,
-    type_of_user,
-    phone_number,
-    interested_ngo,
-    gender,
-    password,
-  } = req.body;
-
-  const user = new User({
-    name,
-    email_address,
-    type_of_user,
-    phone_number,
-    password,
-  });
-  const volunteer = new Volunteer({
-    user_id: user._id,
-    interested_ngo,
-    gender,
-  });
+  const { ngo_id, name, email_address, phone_number, gender, age } = req.body;
   try {
-    await Promise.all([user.validate(), volunteer.validate()]);
-    await Promise.all([user.save(), volunteer.save()]);
-    return res.cookie("user_id", response._id).json({
+    await Volunteer.create({
+      ngo_id,
+      name,
+      email_address,
+      phone_number,
+      gender,
+      age,
+    });
+    return res.json({
       type: "success",
       message: "Registered Successfully",
     });
@@ -37,26 +21,19 @@ const Register = async (req, res) => {
   }
 };
 
-const Login = async (req, res) => {
-  const { email_address, password } = req.body;
+const GetVolunteer = async (req, res) => {
+  const { ngo_id } = req.params;
   try {
-    const response = await User.findOne({
-      email_address,
-      password,
+    const response = await Volunteer.find({
+      interested_ngo: {
+        $in: [ngo_id],
+      },
     }).lean();
-    if (response === null) {
-      return res
-        .status(400)
-        .json({ type: "error", message: "Invalid Credentials" });
-    }
-    return res.cookie("user_id", response._id).json({
-      type: "success",
-      message: "Logged In Successfully",
-    });
+    return res.send(response);
   } catch (err) {
     console.error(err);
     res.status(400).json({ type: "error", message: err.message });
   }
 };
 
-export { Register, Login };
+export { Register, GetVolunteer };
