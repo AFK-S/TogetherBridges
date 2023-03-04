@@ -4,7 +4,7 @@ import NGOcard from '../components/NGOcard'
 const Home = () => {
   return (
     <div>
-      <NGOcard />
+      <h1>Home</h1>
     </div>
   )
 }
