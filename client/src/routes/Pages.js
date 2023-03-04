@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Dashboard from "../pages/Dashboard";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -6,8 +6,18 @@ import Ngo from "../pages/Ngo";
 import NGOcard from "../components/NGOcard";
 import EditProfile from "../pages/EditProfile";
 import Events from "../pages/Events";
+import { useDispatch } from "react-redux";
+import { getUserInfo } from "../store/slice/UserSlice";
+import { useCookies } from "react-cookie";
 
 const Pages = () => {
+  const dispatch = useDispatch();
+  const [cookies] = useCookies(["user_id"]);
+
+  useEffect(() => {
+    dispatch(getUserInfo(cookies.user_id));
+  }, []);
+
   return (
     <>
       <Navbar />

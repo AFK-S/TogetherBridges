@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import './ChatBot.css'
+import React, { useState } from "react";
+import "./ChatBot.css";
 
 function ChatbotUI({ setToggleChat }) {
-  const [messages, setMessages] = useState([])
-  const [currentMessage, setCurrentMessage] = useState('')
+  const [messages, setMessages] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState("");
 
   const handleInputChange = (event) => {
-    setCurrentMessage(event.target.value)
-  }
+    setCurrentMessage(event.target.value);
+  };
 
   const handleFormSubmit = (event) => {
-    event.preventDefault()
-    setMessages([...messages, { text: currentMessage, sender: 'user' }])
-    setCurrentMessage('')
-  }
+    event.preventDefault();
+    setMessages([...messages, { text: currentMessage, sender: "user" }]);
+    setCurrentMessage("");
+  };
   return (
-    <div>
+    <div className="chatbot">
       <div className="fixed top-0 right-0 left-0 z-50 w-full h-screen  bg-[#909090]/50 flex justify-center items-center px-4 overflow-x-hidden overflow-y-auto duration-300 ease-in-out">
         <div className="relative w-full h-full max-w-xl md:h-auto">
           <div className="relative bg-white rounded-lg w-full h-full max-w-2xl md:h-auto shadow px-6 py-6 lg:px-8">
@@ -43,9 +43,9 @@ function ChatbotUI({ setToggleChat }) {
                     <div
                       key={index}
                       className={
-                        message.sender === 'user'
-                          ? 'user-message'
-                          : 'bot-message'
+                        message.sender === "user"
+                          ? "user-message"
+                          : "bot-message"
                       }
                     >
                       {message.text}
@@ -58,6 +58,7 @@ function ChatbotUI({ setToggleChat }) {
                     value={currentMessage}
                     onChange={handleInputChange}
                     placeholder="Type your message..."
+                    className="w-7/12 p-3 mr-3 rounded-xl"
                   />
                   <button id="send-btn" type="submit">
                     Send
@@ -69,7 +70,7 @@ function ChatbotUI({ setToggleChat }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ChatbotUI
+export default ChatbotUI;

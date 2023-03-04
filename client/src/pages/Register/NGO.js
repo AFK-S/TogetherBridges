@@ -65,7 +65,9 @@ const NGO = () => {
   return (
     <div className=" bg-[#909090] flex justify-center items-center px-4 h-screen">
       <div className="relative bg-white rounded-lg w-full h-full max-w-4xl md:h-auto shadow px-6 py-6 lg:px-8">
-        <h3 className="mb-4 text-xl font-medium text-gray-900">NGO Login</h3>
+        <h3 className="mb-4 text-xl font-medium text-gray-900">
+          NGO Registiration
+        </h3>
         <form className="space-y-4" onSubmit={onSubmit}>
           <div className="grid gap-6 mb-6 md:grid-cols-3">
             <div>

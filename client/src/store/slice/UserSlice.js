@@ -1,21 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const getUserInfo = createAsyncThunk("/api/ngos", async (ngo_id) => {
+  try {
+    const { data } = await axios.get(`/api/ngos/${ngo_id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const UserSlice = createSlice({
   name: "user",
   initialState: {
-    name: "NGO 1",
-    location: "Mumbai",
-    image: "https://cdn-icons-png.flaticon.com/512/1/1247.png",
-    address: "Lorem",
-    email: "msdim@idm.sx",
-    phone: "1234567890",
-    incharge: "Mr. XYZ",
-    website: "https://www.google.com",
-    facebook: "https://www.facebook.com",
-    instagram: "https://www.instagram.com",
-    twitter: "https://www.twitter.com",
-    linkedin: "https://www.linkedin.com",
-    youtube: "https://www.youtube.com",
+    user: [],
+    loading: false,
+  },
+  extraReducers: {
+    [getUserInfo.pending]: (state) => {
+      state.loading = true;
+    },
+    [getUserInfo.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    [getUserInfo.rejected]: (state) => {
+      state.loading = false;
+    },
   },
   reducers: {
     setUser: (state, action) => {

@@ -1,31 +1,32 @@
-.chat-container {
+.chatbot .chat-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: 400px;
+  height: 400px;
+  z-index: 10;
 }
 
-.message-list {
+.chatbot .message-list {
   flex-grow: 1;
   overflow-y: auto;
   padding: 10px;
 }
 
-.user-message {
+.chatbot .user-message {
   background-color: #c6c6c678;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-.bot-message {
+.chatbot .bot-message {
   background-color: #747fff;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-form {
+/* form {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -37,8 +38,8 @@ input {
   border-radius: 10px;
   border: none;
   margin-right: 10px;
-}
-.Heading {
+} */
+.chatbot .Heading {
   display: flex;
 }
 

@@ -29,7 +29,7 @@ const GetNGOs = async (req, res) => {
 const GetNGO = async (req, res) => {
   const { ngo_id } = req.params;
   try {
-    const response = await NGO.find({
+    const response = await NGO.findOne({
       ngo_id: ngo_id,
     }).lean();
     return res.send(response);

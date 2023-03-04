@@ -7,7 +7,7 @@ import { addEvent } from "../store/slice/EventsSlice";
 import { addAnnouncement } from "../store/slice/EventsSlice";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.UserSlice);
+  const { user } = useSelector((state) => state.UserSlice);
   const events = useSelector((state) => state.EventsSlice);
   const dispatch = useDispatch();
   const initialData = { name: "", description: "", date: "" };
@@ -59,7 +59,7 @@ const Dashboard = () => {
                 {user.name}
               </h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                {user.location}
+                {user.place}
               </span>
               <div className="flex mt-4 space-x-3 md:mt-6">
                 <NavLink
@@ -82,7 +82,7 @@ const Dashboard = () => {
         {/*  */}
         <div className="my-10">
           <div className="w-full max-h-80 h-full  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-x-scroll">
-            <h1 className="font-semibold shadow-sm text-xl mb-3 sticky top-0 bg-white w-full px-5 py-3">
+            <h1 className="font-semibold shadow-sm text-xl mb-3  bg-white w-full px-5 py-3">
               Your Announcements
             </h1>
             <div className="px-5">
