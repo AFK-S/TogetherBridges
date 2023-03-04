@@ -57,10 +57,13 @@ const Dashboard = () => {
         >
           <h1>Add event</h1> <i className="fa-solid fa-plus ml-3"></i>
         </div>
-        <div className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center">
+        <NavLink
+          to="/events"
+          className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
+        >
           <h1>Edit events</h1>
           <i className="fa-solid fa-pen-to-square ml-3"></i>
-        </div>
+        </NavLink>
         <div className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center">
           <h1>Edit Announcement</h1>
           <i className="fa-solid fa-pen-to-square ml-3"></i>
