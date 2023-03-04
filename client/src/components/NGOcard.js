@@ -1,33 +1,10 @@
 import React from "react";
 import "./NGOcard.css";
-const ngolist = [
-  {
-    name: "NGO 1",
-    address: "Address 1",
-    phone: "1234567890",
-    id: "1",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
-  },
-  {
-    name: "NGO 2",
-    address: "Address 2",
-    phone: "1234567890",
-    id: "2",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
-  },
-  {
-    name: "NGO 3",
-    address: "Address 3",
-    phone: "1234567890",
-    id: "3",
-    description:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum doloremque officiis assumenda! Esse quasi tenetur perspiciatis sint quas animi, aut ratione, blanditiis aperiam dicta unde nesciunt. Adipisci culpa dolores nihil?,",
-  },
-];
-
+import { useSelector } from 'react-redux'
 const NGOcard = () => {
+
+  const ngolist = useSelector(state => state.NgoSlice)
+
   return (
     <div className="main-container">
       {ngolist.map((ngolist) => (
