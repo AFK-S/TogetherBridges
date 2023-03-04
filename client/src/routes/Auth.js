@@ -9,7 +9,7 @@ const Auth = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/ngo" element={<Ngo />} />
+      <Route path="/ngo/:id" element={<Ngo />} />
       <Route path="*" element={<Navigate to='/' />} />
     </Routes>
   )

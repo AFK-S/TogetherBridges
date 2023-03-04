@@ -12,7 +12,7 @@ const Pages = () => {
             <Routes>
                 <Route path="/" index element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/ngo" element={<Ngo />} />
+                <Route path="/ngo/:id" element={<Ngo />} />
                 <Route path="*" element={<h1 className='text-3xl font-bold text-center my-80'>404 Not Found</h1>} />
             </Routes>
         </>
