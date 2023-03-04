@@ -23,6 +23,7 @@ const Ngo = () => {
 
         <div>
           <h1 className='font-semibold text-5xl'>{`Ngo ${data[params.id].name}`}</h1>
+          <p className='text-md text-gray-500 font-light mt-6'>{data[params.id].description}</p>
           <div className="my-10">
             <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
             <div>
