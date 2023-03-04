@@ -1,9 +1,31 @@
 import Donate from "../model/Donate.js";
+import Stripe from "stripe";
+// import dotenv from "dotenv";
+// dotenv.config();
+
+const stripe = Stripe(process.env.STRIPE_KEY);
 
 const Register = async (req, res) => {
   const { name, email_address, phone_number, amount, message } = req.body;
   const { ngo_id } = req.params;
   try {
+    await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name,
+            },
+            unit_amount: 1000,
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `${process.env.CLIENT_URL}/ngo/${ngo_id}`,
+      cancel_url: `${process.env.CLIENT_URL}/ngo/${ngo_id}`,
+    });
     await Donate.create({
       ngo_id,
       name,
@@ -14,7 +36,7 @@ const Register = async (req, res) => {
     });
     return res.json({
       type: "success",
-      message: "Registered Successfully",
+      message: "Donation Successful",
     });
   } catch (err) {
     console.error(err);
