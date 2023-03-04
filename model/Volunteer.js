@@ -4,13 +4,14 @@ const { Schema, connection } = mongoose;
 
 const VolunteerSchema = new Schema(
   {
+    ngo_id: {
+      type: Schema.Types.ObjectId,
+      required: [true, "Please add a NGO ID"],
+    },
     name: {
       type: String,
       trim: true,
-      match: [
-        /^[a-zA-Z0-9]+$/,
-        (props) => `${props.value} is not a valid name`,
-      ],
+      match: [/^[a-zA-Z ]+$/, (props) => `${props.value} is not a valid name`],
       required: [true, "Please add a Name"],
     },
     email_address: {
@@ -44,9 +45,9 @@ const VolunteerSchema = new Schema(
       ],
       required: [true, "Please add a Gender"],
     },
-    interested_ngo: {
-      type: Array,
-      required: [true, "Please add a Interested NGO"],
+    age: {
+      type: Number,
+      required: [true, "Please add a Age"],
     },
   },
   {

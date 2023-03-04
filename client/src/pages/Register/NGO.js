@@ -60,7 +60,7 @@ const NGO = () => {
         <form className="space-y-4" onSubmit={onSubmit}>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label className="input_label">NGO Name</label>
+              <label className="input_label">NGO Name*</label>
               <input
                 type="text"
                 name="name"
@@ -72,7 +72,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label className="input_label">Email Address</label>
+              <label className="input_label">Email Address*</label>
               <input
                 type="email"
                 name="email_address"
@@ -84,7 +84,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label className="input_label">Phone number</label>
+              <label className="input_label">Phone number*</label>
               <input
                 type="tel"
                 name="phone_number"
@@ -97,7 +97,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label className="input_label">Incharge Name</label>
+              <label className="input_label">Incharge Name*</label>
               <input
                 type="text"
                 name="in_charge_name"
@@ -110,7 +110,7 @@ const NGO = () => {
             </div>
           </div>
           <div>
-            <label className="input_label">NGO Address</label>
+            <label className="input_label">NGO Address*</label>
             <input
               type="text"
               name="address"
@@ -122,7 +122,7 @@ const NGO = () => {
             />
           </div>
           <div>
-            <label className="input_label">About NGO</label>
+            <label className="input_label">About NGO*</label>
             <input
               type="text"
               name="about"
@@ -134,7 +134,7 @@ const NGO = () => {
           </div>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div className="relative">
-              <label className="input_label">Password</label>
+              <label className="input_label">Password*</label>
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -171,7 +171,7 @@ const NGO = () => {
               )}
             </div>
             <div className="relative">
-              <label className="input_label">Confirm password</label>
+              <label className="input_label">Confirm password*</label>
               <input
                 type={showCPassword ? "text" : "password"}
                 name="cPassword"

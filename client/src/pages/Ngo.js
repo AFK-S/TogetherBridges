@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Volunteer from "./Register/Volunteer";
+import Donate from "./Register/Donate";
 
 const Ngo = () => {
   const data = useSelector((state) => state.NgoSlice);
+  const [toggleVolunteer, setToggleVolunteer] = useState(false);
+  const [toggleDonate, setToggleDonate] = useState(false);
 
   const [tabCount, setTabCount] = useState(0);
 
@@ -21,7 +25,6 @@ const Ngo = () => {
             {data[params.id].place}
           </span>
         </div>
-
         <div>
           <div className="flex justify-between">
             <div className="">
@@ -49,14 +52,14 @@ const Ngo = () => {
             </div>
             <div>
               <button
-                type="button"
+                onClick={() => setToggleVolunteer(true)}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               >
                 I'm Interested
                 <i className="fa-solid fa-plus ml-2"></i>
               </button>
               <button
-                type="button"
+                onClick={() => setToggleDonate(true)}
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               >
                 Donate
@@ -78,7 +81,6 @@ const Ngo = () => {
             <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
           </div>
         </div>
-
         <div className="flex">
           <div className="icons flex flex-col">
             <div className="flex items-center my-3 text-md text-gray-500">
@@ -98,7 +100,6 @@ const Ngo = () => {
             </div>
           </div>
         </div>
-
         <div className="tabs my-16">
           <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
             <li className="mr-2" onClick={() => changeTab(0)}>
@@ -259,6 +260,9 @@ const Ngo = () => {
           </div>
         </div>
       </div>
+      {toggleVolunteer && <Volunteer setToggleVolunteer={setToggleVolunteer} />}
+
+      {toggleDonate && <Donate setToggleDonate={setToggleDonate} />}
     </>
   );
 };

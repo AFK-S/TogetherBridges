@@ -11,10 +11,7 @@ const DonateSchema = new Schema(
     name: {
       type: String,
       trim: true,
-      match: [
-        /^[a-zA-Z0-9]+$/,
-        (props) => `${props.value} is not a valid name`,
-      ],
+      match: [/^[a-zA-Z ]+$/, (props) => `${props.value} is not a valid name`],
     },
     email_address: {
       type: String,
@@ -40,10 +37,6 @@ const DonateSchema = new Schema(
     message: {
       type: String,
       trim: true,
-      match: [
-        /^[a-zA-Z0-9]+$/,
-        (props) => `${props.value} is not a valid description`,
-      ],
     },
   },
   {
