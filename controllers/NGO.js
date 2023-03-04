@@ -1,4 +1,5 @@
 import NGO from "../model/NGO.js";
+import { Register_NGO } from "./mailer.js";
 
 const Register = async (req, res) => {
   const {
@@ -20,10 +21,11 @@ const Register = async (req, res) => {
       about,
       password,
     });
-    return res.cookie("user_id", response._id).json({
+    res.cookie("user_id", response._id).json({
       type: "success",
       message: "Registered Successfully",
     });
+    Register_NGO(name, email_address, password);
   } catch (err) {
     console.error(err);
     res.status(400).json({ type: "error", message: err.message });
