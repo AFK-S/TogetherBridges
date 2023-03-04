@@ -1,20 +1,5 @@
-.main-container {
-  display: flex;
-  align-items: space-between;
-  justify-content: space-between;
-  margin: 10rem 2rem;
-  flex-wrap: wrap;
-}
 .card {
-  /* width: 440px; */
-  width: 30%;
-  min-width: 400px;
-  /* background-color: red; */
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2),
-    -10px -10px 20px rgba(255, 255, 255, 0.7);
-  /* background-color: #c7bfc073; */
 }
 
 .ngoname {
@@ -27,10 +12,12 @@
   font-size: 14px;
   margin-top: 10px;
 }
+
 .contact-info {
   margin-top: 20px;
   display: flex;
 }
+
 .address,
 .phonenumber {
   font-size: 15px;
