@@ -12,20 +12,19 @@ const Ngo = () => {
   };
 
   const params = useParams();
+
   return (
     <>
-      {/* <div>{`Ngo ${data[params.id].name}`}</div> */}
       <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
         <div className="flex my-5">
           <span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-            Mumbai
+            {data[params.id].place}
           </span>
         </div>
 
         <div>
-          <h1 className="font-semibold text-5xl">{` ${
-            data[params.id].name
-          }`}</h1>
+          <h1 className="font-semibold text-5xl">{` ${data[params.id].name
+            }`}</h1>
           <p className="text-md text-gray-500 font-light mt-6">
             {data[params.id].description}
           </p>
@@ -65,33 +64,30 @@ const Ngo = () => {
           <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
             <li class="mr-2" onClick={() => changeTab(0)}>
               <p
-                class={` ${
-                  tabCount === 0
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${tabCount === 0
+                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                  : ""
+                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Announcement
               </p>
             </li>
             <li class="mr-2" onClick={() => changeTab(1)}>
               <p
-                class={` ${
-                  tabCount === 1
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${tabCount === 1
+                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                  : ""
+                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Upcoming
               </p>
             </li>
             <li class="mr-2" onClick={() => changeTab(2)}>
               <p
-                class={` ${
-                  tabCount === 2
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${tabCount === 2
+                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                  : ""
+                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Previous
               </p>
@@ -99,9 +95,8 @@ const Ngo = () => {
           </ul>
           <div id="myTabContent" className="my-3">
             <div
-              class={` ${
-                tabCount === 0 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${tabCount === 0 ? "" : "hidden"
+                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
             >
               <p class="text-sm text-gray-500 dark:text-gray-400">
                 This is some placeholder content the{" "}
@@ -114,9 +109,8 @@ const Ngo = () => {
               </p>
             </div>
             <div
-              class={` ${
-                tabCount === 1 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${tabCount === 1 ? "" : "hidden"
+                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="dashboard"
               role="tabpanel"
               aria-labelledby="dashboard-tab"
@@ -132,92 +126,91 @@ const Ngo = () => {
               </p>
             </div>
             <div
-              class={` ${
-                tabCount === 2 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${tabCount === 2 ? "" : "hidden"
+                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="settings"
               role="tabpanel"
               aria-labelledby="settings-tab"
             >
               <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
 
-              <a
-                href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
+                <a
+                  href="#"
+                  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
-                <img
-                  class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                  src="/docs/images/blog/image-4.jpg"
-                  alt=""
+                  <img
+                    class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                    src="/docs/images/blog/image-4.jpg"
+                    alt=""
                   />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Noteworthy technology acquisitions 2021
-                  </h5>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of
-                    2021 so far, in reverse chronological order.
-                  </p>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                <img
-                  class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                  src="/docs/images/blog/image-4.jpg"
-                  alt=""
-                  />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Noteworthy technology acquisitions 2021
-                  </h5>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of
-                    2021 so far, in reverse chronological order.
-                  </p>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                <img
-                  class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                  src="/docs/images/blog/image-4.jpg"
-                  alt=""
-                  />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Noteworthy technology acquisitions 2021
-                  </h5>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of
-                    2021 so far, in reverse chronological order.
-                  </p>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
-                >
-                <img
-                  class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                  src="/docs/images/blog/image-4.jpg"
-                  alt=""
-                  />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Noteworthy technology acquisitions 2021
-                  </h5>
-                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Here are the biggest enterprise technology acquisitions of
-                    2021 so far, in reverse chronological order.
-                  </p>
-                </div>
-              </a>
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      Noteworthy technology acquisitions 2021
+                    </h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Here are the biggest enterprise technology acquisitions of
+                      2021 so far, in reverse chronological order.
+                    </p>
                   </div>
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
+                >
+                  <img
+                    class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                    src="/docs/images/blog/image-4.jpg"
+                    alt=""
+                  />
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      Noteworthy technology acquisitions 2021
+                    </h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Here are the biggest enterprise technology acquisitions of
+                      2021 so far, in reverse chronological order.
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
+                >
+                  <img
+                    class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                    src="/docs/images/blog/image-4.jpg"
+                    alt=""
+                  />
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      Noteworthy technology acquisitions 2021
+                    </h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Here are the biggest enterprise technology acquisitions of
+                      2021 so far, in reverse chronological order.
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
+                >
+                  <img
+                    class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                    src="/docs/images/blog/image-4.jpg"
+                    alt=""
+                  />
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      Noteworthy technology acquisitions 2021
+                    </h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      Here are the biggest enterprise technology acquisitions of
+                      2021 so far, in reverse chronological order.
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
