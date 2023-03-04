@@ -17,7 +17,12 @@ const EventsSlice = createSlice({
       { name: "HEllo2", description: "prev2" },
     ],
   },
-  reducers: {},
+  reducers: {
+    addEvent: (state, action) => {
+      state.upcoming.push(action.payload);
+    },
+  },
 });
 
 export { EventsSlice };
+export const { addEvent } = EventsSlice.actions;
