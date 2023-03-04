@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import ChatBot from './ChatBot'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import ChatBot from "./ChatBot";
 
 const Navbar = () => {
-  const [mobMenu, setMobMenu] = useState(false)
-  const [toggleChat, setToggleChat] = useState(false)
+  const [mobMenu, setMobMenu] = useState(false);
+  const [toggleChat, setToggleChat] = useState(false);
 
   const toggleMenu = () => {
-    setMobMenu(!mobMenu)
-  }
+    setMobMenu(!mobMenu);
+  };
 
   return (
     <nav className="bg-white shadow-md border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 sticky top-0">
@@ -17,8 +17,8 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? 'dark:text-white text-black font-bold tracking-wide text-2xl'
-              : 'dark:text-white text-black font-bold tracking-wide text-2xl'
+              ? "dark:text-white text-black font-bold tracking-wide text-2xl"
+              : "dark:text-white text-black font-bold tracking-wide text-2xl"
           }
         >
           TogetherBridges
@@ -43,7 +43,7 @@ const Navbar = () => {
           </svg>
         </button>
         <div
-          className={`w-full md:block md:w-auto ${mobMenu ? '' : 'hidden'}`}
+          className={`w-full md:block md:w-auto ${mobMenu ? "" : "hidden"}`}
           id="navbar-default"
         >
           <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -54,8 +54,8 @@ const Navbar = () => {
                 aria-current="page"
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-700 dark:text-blue-300'
-                    : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    ? "text-blue-700 dark:text-blue-300"
+                    : "block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 }
               >
                 Dashboard
@@ -67,8 +67,8 @@ const Navbar = () => {
                 href="#"
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-700 dark:text-blue-300'
-                    : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    ? "text-blue-700 dark:text-blue-300"
+                    : "block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 }
               >
                 Events
@@ -82,8 +82,8 @@ const Navbar = () => {
                 aria-current="page"
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-blue-700 dark:text-blue-300'
-                    : 'block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
+                    ? "text-blue-700 dark:text-blue-300"
+                    : "block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 }
               >
                 All NGOs
@@ -94,7 +94,7 @@ const Navbar = () => {
       </div>
       {toggleChat && <ChatBot setToggleChat={setToggleChat} />}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

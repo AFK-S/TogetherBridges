@@ -52,13 +52,13 @@ function ChatbotUI({ setToggleChat }) {
                     </div>
                   ))}
                 </div>
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={handleFormSubmit} className="flex">
                   <input
                     type="text"
                     value={currentMessage}
                     onChange={handleInputChange}
                     placeholder="Type your message..."
-                    className="w-7/12 p-3 mr-3 rounded-xl"
+                    className="w-full p-3 mr-3 rounded-xl"
                   />
                   <button id="send-btn" type="submit">
                     Send
