@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login as ReduxLogin } from "../store/slice/IsLoggedInSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [login, setLogin] = useState({
@@ -25,6 +28,7 @@ const Login = () => {
         email_address: "",
         password: "",
       });
+      dispatch(ReduxLogin());
     } catch (error) {
       console.log(error);
     }
