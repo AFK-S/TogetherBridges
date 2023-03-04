@@ -1,11 +1,10 @@
 import React from "react";
 import "./NGOcard.css";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const NGOcard = () => {
-
-  const ngolist = useSelector(state => state.NgoSlice)
+  const ngolist = useSelector((state) => state.NgoSlice);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14">
@@ -16,13 +15,13 @@ const NGOcard = () => {
             <div className="description">{ngolist.description}</div>
             <div className="contact-info">
               <div className="icon">
-                <i class="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot"></i>
               </div>
               <div className="address">{ngolist.address}</div>
             </div>
             <div className="contact-info">
               <div className="icon">
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
               </div>
               <div className="phonenumber">{ngolist.phone}</div>
             </div>
