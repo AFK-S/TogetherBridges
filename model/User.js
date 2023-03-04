@@ -24,16 +24,6 @@ const UserSchema = new Schema(
       required: [true, "Please add an Email Address"],
       unique: true,
     },
-    type_of_user: {
-      type: String,
-      trim: true,
-      enum: ["volunteer", "ngo"],
-      match: [
-        /^(volunteer|ngo)$/,
-        (props) => `${props.value} is not a valid type of user`,
-      ],
-      required: [true, "Please add a Gender"],
-    },
     phone_number: {
       type: String,
       trim: true,

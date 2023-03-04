@@ -4,6 +4,10 @@ const { Schema, connection } = mongoose;
 
 const DonateSchema = new Schema(
   {
+    ngo_id: {
+      type: Schema.Types.ObjectId,
+      required: [true, "Please add a NGO ID"],
+    },
     name: {
       type: String,
       trim: true,
