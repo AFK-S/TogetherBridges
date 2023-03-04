@@ -8,6 +8,7 @@ import { addAnnouncement } from "../store/slice/EventsSlice";
 
 const Dashboard = () => {
   const user = useSelector((state) => state.UserSlice);
+  const events = useSelector((state) => state.EventsSlice);
   const dispatch = useDispatch();
   const initialData = { name: "", description: "", date: "" };
   const [eventData, setEventData] = useState(initialData);
@@ -78,6 +79,27 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        {/*  */}
+        <div className="my-10">
+          <div className="w-full max-h-80 h-full  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-x-scroll">
+            <h1 className="font-semibold shadow-sm text-xl mb-3 sticky top-0 bg-white w-full px-5 py-3">
+              Your Announcements
+            </h1>
+            <div className="px-5">
+              {events.announcements.map((item) => {
+                return (
+                  <div
+                    class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert"
+                  >
+                    {item.title}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        {/*  */}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 my-5">
         <div
