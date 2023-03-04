@@ -6,9 +6,9 @@ const NGOcard = () => {
   const ngolist = useSelector(state => state.NgoSlice)
 
   return (
-    <div className="main-container">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14">
       {ngolist.map((ngolist) => (
-        <div className="card">
+        <div className="card shadow-xl rounded-xl">
           <div className="ngoname">{ngolist.name}</div>
           <div className="description">{ngolist.description}</div>
           <div className="contact-info">
