@@ -1,9 +1,9 @@
-import User from "../model/User.js";
+import NGO from "../model/NGO.js";
 
 const Login = async (req, res) => {
   const { email_address, password } = req.body;
   try {
-    const response = await User.findOne({
+    const response = await NGO.findOne({
       email_address,
       password,
     }).lean();
