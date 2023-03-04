@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import Home from '../pages/Home'
+import Dashboard from '../pages/Dashboard'
 import About from '../pages/About'
 import { Routes, Route } from 'react-router-dom'
 import Ngo from '../pages/Ngo'
@@ -11,7 +11,7 @@ const Pages = () => {
         <>
             <Navbar />
             <Routes>
-                <Route path="/" index element={<Home />} />
+                <Route path="/" index element={<Dashboard />} />
                 <Route path="/ngo" index element={<NGOcard />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/ngo/:id" element={<Ngo />} />

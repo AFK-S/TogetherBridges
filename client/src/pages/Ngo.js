@@ -23,8 +23,27 @@ const Ngo = () => {
         </div>
 
         <div>
-          <h1 className="font-semibold text-5xl">{` ${data[params.id].name
+          <div className="flex justify-between">
+            <h1 className="font-semibold text-5xl">{` ${
+              data[params.id].name
             }`}</h1>
+            <div>
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              >
+                I'm Interested
+                <i class="fa-solid fa-plus ml-2"></i>
+              </button>
+              <button
+                type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              >
+                Donate
+                <i class="fa-solid fa-circle-dollar-to-slot ml-2"></i>
+              </button>
+            </div>
+          </div>
           <p className="text-md text-gray-500 font-light mt-6">
             {data[params.id].description}
           </p>
@@ -64,30 +83,33 @@ const Ngo = () => {
           <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
             <li class="mr-2" onClick={() => changeTab(0)}>
               <p
-                class={` ${tabCount === 0
-                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                  : ""
-                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${
+                  tabCount === 0
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    : ""
+                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Announcement
               </p>
             </li>
             <li class="mr-2" onClick={() => changeTab(1)}>
               <p
-                class={` ${tabCount === 1
-                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                  : ""
-                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${
+                  tabCount === 1
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    : ""
+                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Upcoming
               </p>
             </li>
             <li class="mr-2" onClick={() => changeTab(2)}>
               <p
-                class={` ${tabCount === 2
-                  ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                  : ""
-                  } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                class={` ${
+                  tabCount === 2
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    : ""
+                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Previous
               </p>
@@ -95,8 +117,9 @@ const Ngo = () => {
           </ul>
           <div id="myTabContent" className="my-3">
             <div
-              class={` ${tabCount === 0 ? "" : "hidden"
-                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${
+                tabCount === 0 ? "" : "hidden"
+              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
             >
               <p class="text-sm text-gray-500 dark:text-gray-400">
                 This is some placeholder content the{" "}
@@ -109,8 +132,9 @@ const Ngo = () => {
               </p>
             </div>
             <div
-              class={` ${tabCount === 1 ? "" : "hidden"
-                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${
+                tabCount === 1 ? "" : "hidden"
+              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="dashboard"
               role="tabpanel"
               aria-labelledby="dashboard-tab"
@@ -126,15 +150,15 @@ const Ngo = () => {
               </p>
             </div>
             <div
-              class={` ${tabCount === 2 ? "" : "hidden"
-                } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              class={` ${
+                tabCount === 2 ? "" : "hidden"
+              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="settings"
               role="tabpanel"
               aria-labelledby="settings-tab"
             >
               <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-
-                <a
+                <div
                   href="#"
                   class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
@@ -152,8 +176,8 @@ const Ngo = () => {
                       2021 so far, in reverse chronological order.
                     </p>
                   </div>
-                </a>
-                <a
+                </div>
+                <div
                   href="#"
                   class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
@@ -171,8 +195,8 @@ const Ngo = () => {
                       2021 so far, in reverse chronological order.
                     </p>
                   </div>
-                </a>
-                <a
+                </div>
+                <div
                   href="#"
                   class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
@@ -190,8 +214,8 @@ const Ngo = () => {
                       2021 so far, in reverse chronological order.
                     </p>
                   </div>
-                </a>
-                <a
+                </div>
+                <div
                   href="#"
                   class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
                 >
@@ -209,7 +233,7 @@ const Ngo = () => {
                       2021 so far, in reverse chronological order.
                     </p>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
