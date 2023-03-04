@@ -1,0 +1,29 @@
+{
+  "name": "afk-s_technightcsi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adi50920/AFK-S_TechNightCSI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adi50920/AFK-S_TechNightCSI/issues"
+  },
+  "homepage": "https://github.com/adi50920/AFK-S_TechNightCSI#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "nodemailer": "^6.9.1"
+  }
+}
