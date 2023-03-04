@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import EventCard from "../components/EventCard";
-import Volunteer from "./Register/Volunteer";
-import Donate from "./Register/Donate";
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import EventCard from '../components/EventCard'
+import Volunteer from './Register/Volunteer'
+import Donate from './Register/Donate'
 
 const Ngo = () => {
-  const data = useSelector((state) => state.NgoSlice);
-  const events = useSelector((state) => state.EventsSlice);
+  const data = useSelector((state) => state.NgoSlice)
+  const events = useSelector((state) => state.EventsSlice)
 
-  const [toggleVolunteer, setToggleVolunteer] = useState(false);
-  const [toggleDonate, setToggleDonate] = useState(false);
-  const [tabCount, setTabCount] = useState(0);
+  const [toggleVolunteer, setToggleVolunteer] = useState(false)
+  const [toggleDonate, setToggleDonate] = useState(false)
+  const [tabCount, setTabCount] = useState(0)
 
   const changeTab = (count) => {
-    setTabCount(count);
-  };
+    setTabCount(count)
+  }
 
-  const params = useParams();
+  const params = useParams()
 
   return (
     <>
@@ -37,7 +37,7 @@ const Ngo = () => {
                 href="#"
                 className="inline-flex items-center text-blue-600 hover:underline cursor-pointer mt-2"
                 onClick={() => {
-                  window.open(data[params.id].website);
+                  window.open(data[params.id].website)
                 }}
               >
                 Visit our website
@@ -108,8 +108,8 @@ const Ngo = () => {
               <p
                 className={` ${
                   tabCount === 0
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg active '
+                    : ''
                 } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Announcement
@@ -119,8 +119,8 @@ const Ngo = () => {
               <p
                 className={` ${
                   tabCount === 1
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg active '
+                    : ''
                 } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Upcoming
@@ -130,8 +130,8 @@ const Ngo = () => {
               <p
                 className={` ${
                   tabCount === 2
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
-                    : ""
+                    ? 'text-blue-600 bg-gray-100 rounded-t-lg active '
+                    : ''
                 } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
               >
                 Previous
@@ -141,11 +141,11 @@ const Ngo = () => {
           <div id="myTabContent" className="my-3">
             <div
               className={` ${
-                tabCount === 0 ? "" : "hidden"
+                tabCount === 0 ? '' : 'hidden'
               } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
             >
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                This is some placeholder content the{" "}
+                This is some placeholder content the{' '}
                 <strong className="font-medium text-gray-800 dark:text-white">
                   Profile tab's associated content
                 </strong>
@@ -156,7 +156,7 @@ const Ngo = () => {
             </div>
             <div
               className={` ${
-                tabCount === 1 ? "" : "hidden"
+                tabCount === 1 ? '' : 'hidden'
               } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="dashboard"
               role="tabpanel"
@@ -164,14 +164,14 @@ const Ngo = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
                 {events.upcoming.map((event) => {
-                  const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                  const { name, description } = event
+                  return <EventCard name={name} description={description} />
                 })}
               </div>
             </div>
             <div
               className={` ${
-                tabCount === 2 ? "" : "hidden"
+                tabCount === 2 ? '' : 'hidden'
               } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
               id="settings"
               role="tabpanel"
@@ -179,8 +179,8 @@ const Ngo = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
                 {events.previous.map((event) => {
-                  const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                  const { name, description } = event
+                  return <EventCard name={name} description={description} />
                 })}
               </div>
             </div>
@@ -188,10 +188,9 @@ const Ngo = () => {
         </div>
       </div>
       {toggleVolunteer && <Volunteer setToggleVolunteer={setToggleVolunteer} />}
-
       {toggleDonate && <Donate setToggleDonate={setToggleDonate} />}
     </>
-  );
-};
+  )
+}
 
-export default Ngo;
+export default Ngo
