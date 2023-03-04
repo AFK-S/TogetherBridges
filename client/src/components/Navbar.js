@@ -74,7 +74,6 @@ const Navbar = () => {
                 Events
               </NavLink>
             </li>
-            <button onClick={() => setToggleChat(true)}>chat bot</button>
             <li onClick={toggleMenu}>
               <NavLink
                 to="/ngo"
@@ -88,6 +87,15 @@ const Navbar = () => {
               >
                 All NGOs
               </NavLink>
+            </li>
+            <li>
+              <button
+                className="my-3 md:my-0"
+                onClick={() => setToggleChat(true)}
+              >
+                Chatbot
+                <i class="fa-solid fa-robot ml-1"></i>
+              </button>
             </li>
           </ul>
         </div>
