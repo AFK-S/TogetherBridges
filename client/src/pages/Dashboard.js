@@ -20,12 +20,13 @@ const Dashboard = () => {
   const [announcement, setAnnouncement] = useState("");
   const [cookies] = useCookies(["user_id"]);
 
-  const { setLoading } = useContext(StateContext);
+  const { setLoading, setIsLogin } = useContext(StateContext);
 
   const logoutBtn = () => {
     axios.get("/api/logout");
-    dispatch(logout());
+    setIsLogin(false);
   };
+
   useEffect(() => {
     (async () => {
       setLoading(true);
