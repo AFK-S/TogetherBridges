@@ -10,6 +10,9 @@ const Events = () => {
   const { setLoading, setAlert } = useContext(StateContext);
   const [events, setEvents] = useState([]);
 
+  const date = new Date();
+  const today = date.toISOString().slice(0, 10);
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -66,7 +69,11 @@ const Events = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
               {events.map((event) => {
-                return <EventCard event={event} />;
+                if (event.date.slice(0, 10) >= today) {
+                  return <EventCard event={event} />;
+                } else {
+                  return null;
+                }
               })}
             </div>
           </div>
@@ -80,7 +87,11 @@ const Events = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
               {events.map((event) => {
-                return <EventCard event={event} />;
+                if (event.date.slice(0, 10) < today) {
+                  return <EventCard event={event} />;
+                } else {
+                  return null;
+                }
               })}
             </div>
           </div>
