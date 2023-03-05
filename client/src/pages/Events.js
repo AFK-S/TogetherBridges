@@ -43,8 +43,8 @@ const Events = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
               {events.upcoming.map((event) => {
-                const { name, description } = event;
-                return <EventCard name={name} description={description} />;
+                const { name, description,date } = event;
+                return <EventCard name={name} description={description} date={date} />;
               })}
             </div>
           </div>
@@ -58,8 +58,8 @@ const Events = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
               {events.previous.map((event) => {
-                const { name, description } = event;
-                return <EventCard name={name} description={description} />;
+                const { name, description, date } = event;
+                return <EventCard name={name} description={description} date={date} />;
               })}
             </div>
           </div>

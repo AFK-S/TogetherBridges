@@ -93,6 +93,9 @@ const Navbar = () => {
                 <i className="fa-solid fa-robot ml-1"></i>
               </button>
             </li>
+            <li>
+              <div id="google_element"></div>
+            </li>
           </ul>
         </div>
       </div>
