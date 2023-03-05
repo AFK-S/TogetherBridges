@@ -1,6 +1,10 @@
 import express from "express";
 import { Register as RegisterVolunteer } from "../controllers/Volunteer.js";
-import { Register as RegisterNGO } from "../controllers/NGO.js";
+import {
+  Register as RegisterNGO,
+  GetNGOs,
+  GetNGO,
+} from "../controllers/NGO.js";
 import { Register as RegisterEvent } from "../controllers/Event.js";
 import { Register as RegisterDonate } from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
@@ -27,5 +31,7 @@ router.get("/chatbot/:message", async (req, res) => {
     });
   }
 });
+router.get("/ngos", GetNGOs);
+router.get("/ngos/:id", GetNGO);
 
 export default router;

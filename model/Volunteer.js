@@ -23,7 +23,6 @@ const VolunteerSchema = new Schema(
         (props) => `${props.value} is not a valid email`,
       ],
       required: [true, "Please add an Email Address"],
-      unique: true,
     },
     phone_number: {
       type: String,
@@ -33,7 +32,6 @@ const VolunteerSchema = new Schema(
         (props) => `${props.value} is not a valid phone number`,
       ],
       required: [true, "Please add a Phone Number"],
-      unique: true,
     },
     gender: {
       type: String,

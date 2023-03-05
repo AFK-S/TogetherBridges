@@ -1,25 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { StateContext } from "../context/StateContext";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "../store/slice/IsLoggedInSlice";
 import axios from "axios";
 import { addEvent } from "../store/slice/EventsSlice";
 import { addAnnouncement } from "../store/slice/EventsSlice";
+import { useCookies } from "react-cookie";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.UserSlice);
+  const { user } = useSelector((state) => state.UserSlice);
   const events = useSelector((state) => state.EventsSlice);
   const dispatch = useDispatch();
   const initialData = { name: "", description: "", date: "" };
   const [eventData, setEventData] = useState(initialData);
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
+  const [ngo, setNgo] = useState({});
   const [announcement, setAnnouncement] = useState("");
+  const [cookies] = useCookies(["user_id"]);
+
+  const { setLoading, setIsLogin } = useContext(StateContext);
 
   const logoutBtn = () => {
     axios.get("/api/logout");
-    dispatch(logout());
+    setIsLogin(false);
   };
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(`/api/ngos/${cookies.user_id}`);
+        setNgo(data);
+      } catch (error) {
+        console.log(error);
+        alert("Something went wrong");
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const onChangeAnnounce = (e) => {
     setAnnouncement(e.target.value);
@@ -45,7 +65,7 @@ const Dashboard = () => {
 
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
-      <h1 className="font-semibold text-5xl">{`Hello ${user.name},`}</h1>
+      <h1 className="font-semibold text-5xl">{`Hello ${ngo.name},`}</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="my-10">
           <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -56,10 +76,10 @@ const Dashboard = () => {
                 alt="profile"
               />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                {user.name}
+                {ngo.name}
               </h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                {user.location}
+                {ngo.place}
               </span>
               <div className="flex mt-4 space-x-3 md:mt-6">
                 <NavLink
@@ -82,7 +102,7 @@ const Dashboard = () => {
         {/*  */}
         <div className="my-10">
           <div className="w-full max-h-80 h-full  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-x-scroll">
-            <h1 className="font-semibold shadow-sm text-xl mb-3 sticky top-0 bg-white w-full px-5 py-3">
+            <h1 className="font-semibold shadow-sm text-xl mb-3  bg-white w-full px-5 py-3">
               Your Announcements
             </h1>
             <div className="px-5">

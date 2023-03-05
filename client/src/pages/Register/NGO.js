@@ -1,22 +1,25 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../../context/StateContext";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../store/slice/IsLoggedInSlice";
 import axios from "axios";
 
 const NGO = () => {
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
+  const { setIsLogin, setAlert } = useContext(StateContext);
   const [register, setRegister] = useState({
     name: "",
     email_address: "",
     phone_number: "",
     in_charge_name: "",
+    place: "",
     address: "",
     about: "",
+    website_url: "",
+    youtube_url: "",
+    facebook_url: "",
+    instagram_url: "",
     password: "",
     cPassword: "",
   });
@@ -43,22 +46,33 @@ const NGO = () => {
         in_charge_name: "",
         address: "",
         about: "",
+        website_url: "",
+        youtube_url: "",
+        facebook_url: "",
+        instagram_url: "",
         password: "",
         cPassword: "",
       });
-      dispatch(login());
+      setIsLogin(true);
     } catch (error) {
       console.log(error);
+      setAlert({
+        isAlert: true,
+        type: error.response.data.type,
+        message: error.response.data.message,
+      });
     }
     setIsLoading(false);
   };
 
   return (
     <div className=" bg-[#909090] flex justify-center items-center px-4 h-screen">
-      <div className="relative bg-white rounded-lg w-full h-full max-w-2xl md:h-auto shadow px-6 py-6 lg:px-8">
-        <h3 className="mb-4 text-xl font-medium text-gray-900">NGO Login</h3>
+      <div className="relative bg-white rounded-lg w-full h-full max-w-4xl md:h-auto shadow px-6 py-6 lg:px-8">
+        <h3 className="mb-4 text-xl font-medium text-gray-900">
+          NGO Registiration
+        </h3>
         <form className="space-y-4" onSubmit={onSubmit}>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="grid gap-6 mb-6 md:grid-cols-3">
             <div>
               <label className="input_label">NGO Name*</label>
               <input
@@ -108,6 +122,18 @@ const NGO = () => {
                 required
               />
             </div>
+            <div>
+              <label className="input_label">NGO Place*</label>
+              <input
+                type="text"
+                name="place"
+                className="input_field"
+                placeholder="Thane"
+                onChange={onChange}
+                value={register.place}
+                required
+              />
+            </div>
           </div>
           <div>
             <label className="input_label">NGO Address*</label>
@@ -123,16 +149,62 @@ const NGO = () => {
           </div>
           <div>
             <label className="input_label">About NGO*</label>
-            <input
-              type="text"
+            <textarea
+              rows="3"
               name="about"
               className="input_field"
+              placeholder="about..."
               onChange={onChange}
               value={register.about}
               required
-            />
+            ></textarea>
           </div>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="grid gap-6 mb-6 md:grid-cols-3">
+            <div>
+              <label class="input_label">NGO Website URL*</label>
+              <input
+                type="url"
+                name="website_url"
+                className="input_field"
+                placeholder="https://www.example.com"
+                onChange={onChange}
+                value={register.website_url}
+                required
+              />
+            </div>
+            <div>
+              <label class="input_label">Youtube URL</label>
+              <input
+                type="url"
+                name="youtube_url"
+                className="input_field"
+                placeholder="https://www.youtube.com"
+                onChange={onChange}
+                value={register.youtube_url}
+              />
+            </div>
+            <div>
+              <label class="input_label">Fackbook URL</label>
+              <input
+                type="url"
+                name="facebook_url"
+                className="input_field"
+                placeholder="https://www.facebook.com"
+                onChange={onChange}
+                value={register.facebook_url}
+              />
+            </div>
+            <div>
+              <label class="input_label">Instagram URL</label>
+              <input
+                type="url"
+                name="instagram_url"
+                className="input_field"
+                placeholder="https://www.instagram.com"
+                onChange={onChange}
+                value={register.instagram_url}
+              />
+            </div>
             <div className="relative">
               <label className="input_label">Password*</label>
               <input
@@ -233,7 +305,7 @@ const NGO = () => {
           </button>
           <div className="text-sm text-center font-medium text-gray-500">
             Registered?{" "}
-            <Link to="login" className="text-blue-700 hover:underline ">
+            <Link to="/login" className="text-blue-700 hover:underline ">
               Login
             </Link>
           </div>

@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../../context/StateContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const NGO = ({ setToggleDonate }) => {
   const { ngo_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const { setAlert } = useContext(StateContext);
   const [donate, setDonate] = useState({
     name: "",
     email_address: "",
@@ -35,8 +36,14 @@ const NGO = ({ setToggleDonate }) => {
         amount: "",
         message: "",
       });
+      setToggleDonate(false);
     } catch (error) {
       console.log(error);
+      setAlert({
+        isAlert: true,
+        type: error.response.data.type,
+        message: error.response.data.message,
+      });
     }
     setIsLoading(false);
   };
@@ -74,7 +81,6 @@ const NGO = ({ setToggleDonate }) => {
                   placeholder="John Doe"
                   onChange={onChange}
                   value={donate.name}
-                  required
                 />
               </div>
               <div>
@@ -86,7 +92,6 @@ const NGO = ({ setToggleDonate }) => {
                   placeholder="name@gmail.com"
                   onChange={onChange}
                   value={donate.email_address}
-                  required
                 />
               </div>
               <div>
@@ -99,7 +104,6 @@ const NGO = ({ setToggleDonate }) => {
                   pattern="[0-9]{10}"
                   onChange={onChange}
                   value={donate.phone_number}
-                  required
                 />
               </div>
               <div>
@@ -125,7 +129,6 @@ const NGO = ({ setToggleDonate }) => {
                 placeholder="message..."
                 onChange={onChange}
                 value={donate.message}
-                required
               />
             </div>
             <button

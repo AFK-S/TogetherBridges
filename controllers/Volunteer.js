@@ -1,7 +1,8 @@
 import Volunteer from "../model/Volunteer.js";
 
 const Register = async (req, res) => {
-  const { ngo_id, name, email_address, phone_number, gender, age } = req.body;
+  const { name, email_address, phone_number, gender, age } = req.body;
+  const { ngo_id } = req.params;
   try {
     await Volunteer.create({
       ngo_id,

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../context/StateContext";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login as ReduxLogin } from "../store/slice/IsLoggedInSlice";
 import axios from "axios";
 
 const Login = () => {
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { setIsLogin, setAlert } = useContext(StateContext);
   const [login, setLogin] = useState({
     email_address: "",
     password: "",
@@ -28,9 +27,14 @@ const Login = () => {
         email_address: "",
         password: "",
       });
-      dispatch(ReduxLogin());
+      setIsLogin(true);
     } catch (error) {
       console.log(error);
+      setAlert({
+        isAlert: true,
+        type: error.response.data.type,
+        message: error.response.data.message,
+      });
     }
     setIsLoading(false);
   };
@@ -120,10 +124,7 @@ const Login = () => {
           </button>
           <div className="text-sm text-center font-medium text-gray-500">
             Not registered?{" "}
-            <Link
-              to="ngo/registration"
-              className="text-blue-700 hover:underline "
-            >
+            <Link to="/register" className="text-blue-700 hover:underline ">
               Create account
             </Link>
           </div>
