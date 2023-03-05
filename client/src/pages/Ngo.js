@@ -43,7 +43,7 @@ const NGO = () => {
 
   return (
     <>
-      <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
+      <div className="ngo w-10/12 md:w-8/12 mx-auto pt-10 md:pt-16">
         <div className="flex my-5">
           <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
             {ngo.place}
@@ -89,7 +89,7 @@ const NGO = () => {
           <p className="text-md text-gray-500 font-light mt-6">{ngo.about}</p>
           <div className="my-8">
             <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
-            <div>
+            <div id="address">
               <h1 className="font-semibold text-xl">Address</h1>
               <p className="text-md text-gray-500 font-light">{ngo.address}</p>
             </div>
@@ -227,6 +227,73 @@ const NGO = () => {
             </div>
           </div>
         </div>
+
+        <footer class=" bg-white rounded-lg py-5  md:px-6 md:py-8 dark:bg-gray-900">
+          <div class="sm:flex sm:items-center sm:justify-between">
+            <a
+              href={`${ngo.website_url}`}
+              class="flex items-center mb-4 sm:mb-0"
+            >
+              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                {ngo.name}
+              </span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+              <li>
+                <a
+                  href={`${ngo.instagram_url}`}
+                  class={`mr-4 hover:underline md:mr-6 ${
+                    ngo.instagram_url ? "" : "hidden"
+                  }`}
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${ngo.facebook_url}`}
+                  class={`mr-4 hover:underline md:mr-6 ${
+                    ngo.facebook_url ? "" : "hidden"
+                  }`}
+                >
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${ngo.youtube_url}`}
+                  class={`mr-4 hover:underline md:mr-6 ${
+                    ngo.youtube_url ? "" : "hidden"
+                  }`}
+                >
+                  Youtube
+                </a>
+              </li>
+              <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6 ">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" class="mr-4 hover:underline md:mr-6">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            <a href="https://localhost:3000" class="hover:underline">
+              TogetherBridges™
+            </a>
+            . All Rights Reserved.
+          </span>
+        </footer>
       </div>
       {toggleVolunteer && <Volunteer setToggleVolunteer={setToggleVolunteer} />}
       {toggleDonate && <Donate setToggleDonate={setToggleDonate} />}

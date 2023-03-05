@@ -70,10 +70,10 @@ const Dashboard = () => {
             <span className="text-sm text-gray-500">{ngo.place}</span>
             <div className="flex mt-4 gap-4 space-x-3 md:mt-6">
               <NavLink
-                to="/sendprofile"
+                to="/editprofile"
                 className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5"
               >
-                send Profile
+                Edit Profile
               </NavLink>
               <button
                 type="button"
@@ -114,8 +114,8 @@ const Dashboard = () => {
           to="/events"
           className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
         >
-          <h1>send events</h1>
-          <i className="fa-solid fa-pen-to-square ml-3"></i>
+          <h1>View events</h1>
+          <i class="fa-regular fa-eye ml-3"></i>
         </NavLink>
         <div
           className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
