@@ -115,7 +115,7 @@ const Dashboard = () => {
           className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
         >
           <h1>View events</h1>
-          <i class="fa-regular fa-eye ml-3"></i>
+          <i className="fa-regular fa-eye ml-3"></i>
         </NavLink>
         <div
           className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
