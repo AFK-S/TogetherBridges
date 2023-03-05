@@ -7,7 +7,7 @@ import Volunteer from "./Register/Volunteer";
 import axios from "axios";
 import Donate from "./Register/Donate";
 
-const Ngo = () => {
+const NGO = () => {
   const events = useSelector((state) => state.EventsSlice);
   const [ngo, setNgo] = useState({});
   const { ngo_id } = useParams();
@@ -229,4 +229,4 @@ const Ngo = () => {
   );
 };
 
-export default Ngo;
+export default NGO;

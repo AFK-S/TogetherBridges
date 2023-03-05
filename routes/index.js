@@ -9,6 +9,7 @@ import { Register as RegisterEvent } from "../controllers/Event.js";
 import { Register as RegisterDonate } from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
 import chatbot_response from "../controllers/ChatBot.js";
+import { Register as RegisterAnnouncement } from "../controllers/Announcement.js";
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.post("/login", Login);
 router.get("/logout", Logout);
 router.post("/register/volunteer/:ngo_id", RegisterVolunteer);
 router.post("/register/donate/:ngo_id", RegisterDonate);
+router.post("/register/announcement/:ngo_id", RegisterAnnouncement);
 
 router.post("/register/event", RegisterEvent);
 router.get("/chatbot/:message", async (req, res) => {
