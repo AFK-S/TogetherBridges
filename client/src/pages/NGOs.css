@@ -1,5 +1,7 @@
 .card {
   padding: 2rem;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .ngoname {
@@ -22,4 +24,9 @@
 .phonenumber {
   font-size: 15px;
   margin-left: 5px;
+}
+
+.my-grid{
+  min-height: 600px;
+  overflow-y: scroll;
 }

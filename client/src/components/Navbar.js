@@ -90,8 +90,11 @@ const Navbar = () => {
                 onClick={() => setToggleChat(true)}
               >
                 Chatbot
-                <i class="fa-solid fa-robot ml-1"></i>
+                <i className="fa-solid fa-robot ml-1"></i>
               </button>
+            </li>
+            <li>
+              <div id="google_element"></div>
             </li>
           </ul>
         </div>

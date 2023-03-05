@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import "./ChatBot.css";
+import axios from "axios";
 
 function ChatbotUI({ setToggleChat }) {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
 
-  const handleInputChange = (event) => {
-    setCurrentMessage(event.target.value);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setMessages((prev) => [...prev, { text: currentMessage, sender: "user" }]);
+    const { data } = await axios.get(`/api/chatbot/${currentMessage}`);
+    setCurrentMessage("");
+    setMessages((prev) => [...prev, { text: data, sender: "bot" }]);
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setMessages([...messages, { text: currentMessage, sender: "user" }]);
-    setCurrentMessage("");
-  };
   return (
     <div className="chatbot">
       <div className="fixed top-0 right-0 left-0 z-50 w-full h-screen  bg-[#909090]/50 flex justify-center items-center px-4 overflow-x-hidden overflow-y-auto duration-300 ease-in-out">
@@ -22,7 +22,7 @@ function ChatbotUI({ setToggleChat }) {
             <div className=" items-start">
               <div className="Heading">
                 <h3 className="mb-4 text-xl bg-grey font-medium text-gray-900">
-                  ChatBot
+                  Hi I'm KIWI
                 </h3>
                 <button
                   onClick={() => setToggleChat(false)}
@@ -44,23 +44,27 @@ function ChatbotUI({ setToggleChat }) {
                       key={index}
                       className={
                         message.sender === "user"
-                          ? "user-message"
-                          : "bot-message"
+                          ? "user-message text-sm"
+                          : "bot-message text-sm"
                       }
                     >
                       {message.text}
                     </div>
                   ))}
                 </div>
-                <form onSubmit={handleFormSubmit} className="flex">
+                <form onSubmit={handleFormSubmit} className="flex gap-4">
                   <input
                     type="text"
                     value={currentMessage}
-                    onChange={handleInputChange}
+                    onChange={(e) => setCurrentMessage(e.target.value)}
                     placeholder="Type your message..."
-                    className="w-full p-3 mr-3 rounded-xl border-2"
+                    className="w-full py-2.5 px-2 rounded-lg border text-sm"
                   />
-                  <button id="send-btn" type="submit" className="text-white">
+                  <button
+                    id="send-btn"
+                    type="submit"
+                    className="text-white px-5 py-2.5 text-sm"
+                  >
                     Send
                   </button>
                 </form>

@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StateContext } from "../context/StateContext";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import EventCard from "../components/EventCard";
 import Volunteer from "./Register/Volunteer";
 import axios from "axios";
 import Donate from "./Register/Donate";
 
-const Ngo = () => {
-  const events = useSelector((state) => state.EventsSlice);
-  const [ngo, setNgo] = useState({});
+const NGO = () => {
   const { ngo_id } = useParams();
   const { setLoading } = useContext(StateContext);
 
+  const [ngo, setNgo] = useState({});
+  const [announcement, setAnnouncement] = useState([]);
+  const [events, setEvents] = useState([]);
   const [toggleVolunteer, setToggleVolunteer] = useState(false);
   const [toggleDonate, setToggleDonate] = useState(false);
   const [tabCount, setTabCount] = useState(0);
@@ -27,6 +27,12 @@ const Ngo = () => {
       try {
         const { data } = await axios.get(`/api/ngos/${ngo_id}`);
         setNgo(data);
+        const { data: announcement } = await axios.get(
+          `/api/announcements/${ngo_id}`
+        );
+        setAnnouncement(announcement);
+        const { data: event } = await axios.get(`/api/events/${ngo_id}`);
+        setEvents(event);
       } catch (error) {
         console.log(error);
         alert("Something went wrong");
@@ -37,7 +43,7 @@ const Ngo = () => {
 
   return (
     <>
-      <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
+      <div className="ngo w-10/12 md:w-8/12 mx-auto pt-10 md:pt-16">
         <div className="flex my-5">
           <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
             {ngo.place}
@@ -83,7 +89,7 @@ const Ngo = () => {
           <p className="text-md text-gray-500 font-light mt-6">{ngo.about}</p>
           <div className="my-8">
             <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
-            <div>
+            <div id="address">
               <h1 className="font-semibold text-xl">Address</h1>
               <p className="text-md text-gray-500 font-light">{ngo.address}</p>
             </div>
@@ -110,14 +116,14 @@ const Ngo = () => {
           </div>
         </div>
         <div className="tabs my-16">
-          <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+          <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
             <li className="mr-2" onClick={() => changeTab(0)}>
               <p
                 className={` ${
                   tabCount === 0
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Announcement
               </p>
@@ -128,7 +134,7 @@ const Ngo = () => {
                   tabCount === 1
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Upcoming
               </p>
@@ -139,7 +145,7 @@ const Ngo = () => {
                   tabCount === 2
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Previous
               </p>
@@ -150,7 +156,7 @@ const Ngo = () => {
                   tabCount === 3
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Videos
               </p>
@@ -160,17 +166,15 @@ const Ngo = () => {
             <div
               className={` ${
                 tabCount === 0 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
+              } " id="profile" role="tabpanel" aria-labelledby="profile-tab`}
             >
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                This is some placeholder content the{" "}
-                <strong className="font-medium text-gray-800 dark:text-white">
-                  Profile tab's associated content
-                </strong>
-                . Clicking another tab will toggle the visibility of this one
-                htmlFor the next. The tab JavaScript swaps classNameees to
-                control the content visibility and styling.
-              </p>
+              {announcement.map((ann) => {
+                return (
+                  <p className="my-5 rounded-lg bg-gray-50 dark:bg-gray-800 p-4 ">
+                    <span className="font-semibold">{ann.description}</span>
+                  </p>
+                );
+              })}
             </div>
             <div
               className={` ${
@@ -181,9 +185,8 @@ const Ngo = () => {
               aria-labelledby="dashboard-tab"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.upcoming.map((event) => {
-                  const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                {events.map((event) => {
+                  return <EventCard event={event} />;
                 })}
               </div>
             </div>
@@ -196,9 +199,9 @@ const Ngo = () => {
               aria-labelledby="settings-tab"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.previous.map((event) => {
+                {events.map((event) => {
                   const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                  return <EventCard event={event} />;
                 })}
               </div>
             </div>
@@ -222,6 +225,73 @@ const Ngo = () => {
             </div>
           </div>
         </div>
+
+        <footer className=" bg-white rounded-lg py-5  md:px-6 md:py-8 dark:bg-gray-900">
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <a
+              href={`${ngo.website_url}`}
+              className="flex items-center mb-4 sm:mb-0"
+            >
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                {ngo.name}
+              </span>
+            </a>
+            <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+              <li>
+                <a
+                  href={`${ngo.instagram_url}`}
+                  className={`mr-4 hover:underline md:mr-6 ${
+                    ngo.instagram_url ? "" : "hidden"
+                  }`}
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${ngo.facebook_url}`}
+                  className={`mr-4 hover:underline md:mr-6 ${
+                    ngo.facebook_url ? "" : "hidden"
+                  }`}
+                >
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${ngo.youtube_url}`}
+                  className={`mr-4 hover:underline md:mr-6 ${
+                    ngo.youtube_url ? "" : "hidden"
+                  }`}
+                >
+                  Youtube
+                </a>
+              </li>
+              <li>
+                <a href="#" className="mr-4 hover:underline md:mr-6 ">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="mr-4 hover:underline md:mr-6">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:underline">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            <a href="https://localhost:3000" className="hover:underline">
+              TogetherBridges™
+            </a>
+            . All Rights Reserved.
+          </span>
+        </footer>
       </div>
       {toggleVolunteer && <Volunteer setToggleVolunteer={setToggleVolunteer} />}
       {toggleDonate && <Donate setToggleDonate={setToggleDonate} />}
@@ -229,4 +299,4 @@ const Ngo = () => {
   );
 };
 
-export default Ngo;
+export default NGO;

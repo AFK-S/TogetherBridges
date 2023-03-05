@@ -17,37 +17,26 @@
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
+  width: fit-content;
+  text-align: end;
+  margin-left: auto;
 }
 
 .chatbot .bot-message {
-  background-color: #747fff;
+  background-color: #7480ff71;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
+  width: fit-content;
+  text-align: start;
+  margin-right: auto;
 }
-
-/* form {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
-input {
-  flex-grow: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  margin-right: 10px;
-} */
 
 .chatbot .Heading {
   display: flex;
 }
 
 #send-btn {
-  border: none;
   background-color: rgb(55, 112, 255);
   border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
 }

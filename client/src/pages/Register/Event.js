@@ -1,23 +1,22 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from "../../context/StateContext";
-import { useParams } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const Donate = ({ setToggleDonate }) => {
-  const { ngo_id } = useParams();
+const Event = ({ setToggleEvent }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [cookies] = useCookies(["user_id"]);
   const { setAlert } = useContext(StateContext);
-  const [donate, setDonate] = useState({
+  const [event, setEvent] = useState({
     name: "",
-    email_address: "",
-    phone_number: "",
-    amount: "",
-    message: "",
+    description: "",
+    place: "",
+    date: "",
   });
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setDonate({ ...donate, [name]: value });
+    setEvent({ ...event, [name]: value });
   };
 
   const onSubmit = async (e) => {
@@ -25,28 +24,17 @@ const Donate = ({ setToggleDonate }) => {
     setIsLoading(true);
     try {
       const { data } = await axios.post(
-        `/api/register/donate/${ngo_id}`,
-        donate
+        `/api/register/event/${cookies.user_id}`,
+        event
       );
       console.log(data);
-      setDonate({
+      setEvent({
         name: "",
-        email_address: "",
-        phone_number: "",
-        amount: "",
-        message: "",
+        description: "",
+        place: "",
+        date: "",
       });
-      axios
-        .post(`/stripe/create-checkout-session`, { amount: donate.amount })
-        .then((res) => {
-          if (res.data.url) {
-            window.location.href = res.data.url;
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setToggleDonate(false);
+      setToggleEvent(false);
     } catch (error) {
       console.log(error);
       setAlert({
@@ -63,16 +51,9 @@ const Donate = ({ setToggleDonate }) => {
       <div className="relative w-full h-full max-w-xl md:h-auto">
         <div className="relative bg-white rounded-lg w-full h-full max-w-2xl md:h-auto shadow px-6 py-6 lg:px-8">
           <div className="flex items-start justify-between rounded-t">
-            <div>
-              <h3 className="text-xl font-medium text-gray-900">
-                Donate to NGO
-              </h3>
-              <h6 className="mb-4 text-sm text-gray-500">
-                If you want to be anonymous, leave the field blank
-              </h6>
-            </div>
+            <h3 className="text-xl font-medium text-gray-900">Add an Event</h3>
             <button
-              onClick={() => setToggleDonate(false)}
+              onClick={() => setToggleEvent(false)}
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -83,63 +64,52 @@ const Donate = ({ setToggleDonate }) => {
           <form className="space-y-4" onSubmit={onSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
-                <label className="input_label">Name</label>
+                <label className="input_label">Name*</label>
                 <input
                   type="text"
                   name="name"
                   className="input_field"
-                  placeholder="John Doe"
+                  placeholder="Donation Campaign"
                   onChange={onChange}
-                  value={donate.name}
+                  value={event.name}
                 />
               </div>
               <div>
-                <label className="input_label">Email Address</label>
+                <label className="input_label">Description*</label>
                 <input
-                  type="email"
-                  name="email_address"
+                  type="text"
+                  name="description"
                   className="input_field"
-                  placeholder="name@gmail.com"
+                  placeholder="Add description..."
                   onChange={onChange}
-                  value={donate.email_address}
-                />
-              </div>
-              <div>
-                <label className="input_label">Phone number</label>
-                <input
-                  type="tel"
-                  name="phone_number"
-                  className="input_field"
-                  placeholder="1234567890"
-                  pattern="[0-9]{10}"
-                  onChange={onChange}
-                  value={donate.phone_number}
-                />
-              </div>
-              <div>
-                <label className="input_label">Amount*</label>
-                <input
-                  type="tel"
-                  name="amount"
-                  className="input_field"
-                  placeholder="50"
-                  pattern="[1-9][0-9]+"
-                  onChange={onChange}
-                  value={donate.amount}
+                  value={event.description}
                   required
                 />
               </div>
-            </div>
-            <div>
-              <label className="input_label">Message</label>
-              <input
-                type="text"
-                name="message"
-                className="input_field"
-                placeholder="message..."
-                onChange={onChange}
-                value={donate.message}
-              />
+              <div>
+                <label className="input_label">Place*</label>
+                <input
+                  type="text"
+                  name="place"
+                  className="input_field"
+                  placeholder="Thane"
+                  onChange={onChange}
+                  value={event.place}
+                  required
+                />
+              </div>
+              <div>
+                <label className="input_label">Date*</label>
+                <input
+                  type="date"
+                  name="date"
+                  className="input_field"
+                  placeholder="2021-12-31"
+                  onChange={onChange}
+                  value={event.date}
+                  required
+                />
+              </div>
             </div>
             <button
               type="submit"
@@ -161,7 +131,7 @@ const Donate = ({ setToggleDonate }) => {
                   />
                 </svg>
               ) : (
-                "Donate"
+                "Register"
               )}
             </button>
           </form>
@@ -171,4 +141,4 @@ const Donate = ({ setToggleDonate }) => {
   );
 };
 
-export default Donate;
+export default Event;

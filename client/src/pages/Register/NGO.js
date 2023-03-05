@@ -161,7 +161,7 @@ const NGO = () => {
           </div>
           <div className="grid gap-6 mb-6 md:grid-cols-3">
             <div>
-              <label class="input_label">NGO Website URL*</label>
+              <label className="input_label">NGO Website URL*</label>
               <input
                 type="url"
                 name="website_url"
@@ -173,7 +173,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label class="input_label">Youtube URL</label>
+              <label className="input_label">Youtube URL</label>
               <input
                 type="url"
                 name="youtube_url"
@@ -184,7 +184,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label class="input_label">Fackbook URL</label>
+              <label className="input_label">Fackbook URL</label>
               <input
                 type="url"
                 name="facebook_url"
@@ -195,7 +195,7 @@ const NGO = () => {
               />
             </div>
             <div>
-              <label class="input_label">Instagram URL</label>
+              <label className="input_label">Instagram URL</label>
               <input
                 type="url"
                 name="instagram_url"

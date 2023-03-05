@@ -1,14 +1,37 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
+import { StateContext } from "../context/StateContext";
 import EventCard from "../components/EventCard";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const Events = () => {
   const [tabCount, setTabCount] = useState(0);
+  const [cookies] = useCookies(["user_id"]);
+  const { setLoading, setAlert } = useContext(StateContext);
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(`/api/events/${cookies.user_id}`);
+        setEvents(data);
+      } catch (error) {
+        console.log(error);
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        });
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const changeTab = (count) => {
     setTabCount(count);
   };
-  const events = useSelector((state) => state.EventsSlice);
+
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-0">
       <div className="tabs my-16">
@@ -42,9 +65,8 @@ const Events = () => {
             } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-              {events.upcoming.map((event) => {
-                const { name, description } = event;
-                return <EventCard name={name} description={description} />;
+              {events.map((event) => {
+                return <EventCard event={event} />;
               })}
             </div>
           </div>
@@ -57,9 +79,8 @@ const Events = () => {
             aria-labelledby="dashboard-tab"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-              {events.previous.map((event) => {
-                const { name, description } = event;
-                return <EventCard name={name} description={description} />;
+              {events.map((event) => {
+                return <EventCard event={event} />;
               })}
             </div>
           </div>
