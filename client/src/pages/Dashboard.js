@@ -7,6 +7,7 @@ import Announcement from "./Register/Announcement";
 import Event from "./Register/Event";
 
 const Dashboard = () => {
+  const [isFetched, setIsFetched] = useState(false);
   const [ngo, setNgo] = useState({});
   const [announcement, setAnnouncement] = useState([]);
   const [cookies] = useCookies(["user_id"]);
@@ -40,7 +41,7 @@ const Dashboard = () => {
       }
       setLoading(false);
     })();
-  }, []);
+  }, [isFetched]);
 
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
@@ -59,10 +60,10 @@ const Dashboard = () => {
             <span className="text-sm text-gray-500">{ngo.place}</span>
             <div className="flex mt-4 gap-4 space-x-3 md:mt-6">
               <NavLink
-                to="/editprofile"
+                to="/sendprofile"
                 className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5"
               >
-                Edit Profile
+                send Profile
               </NavLink>
               <button
                 type="button"
@@ -103,7 +104,7 @@ const Dashboard = () => {
           to="/events"
           className="w-full bg-gray-200 hover:bg-gray-300 cursor-pointer p-5 rounded-xl flex justify-center items-center"
         >
-          <h1>Edit events</h1>
+          <h1>send events</h1>
           <i className="fa-solid fa-pen-to-square ml-3"></i>
         </NavLink>
         <div
@@ -116,8 +117,154 @@ const Dashboard = () => {
       </div>
       {toggleEvent && <Event setToggleEvent={setToggleEvent} />}
       {toggleAnnouncement && (
-        <Announcement setToggleAnnouncement={setToggleAnnouncement} />
+        <Announcement
+          setToggleAnnouncement={setToggleAnnouncement}
+          setIsFetched={setIsFetched}
+          isFetched={isFetched}
+        />
       )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
+        <div>
+          <h2 className="my-5 font-medium text-xl">Interested:</h2>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Email
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    ABC FDS
+                  </th>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Microsoft Surface Pro
+                  </th>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="mailto:"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Magic Mouse 2
+                  </th>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h2 className="my-5 font-medium text-xl">Doners:</h2>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Amount
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Email
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    ABC FDS
+                  </th>
+                  <td class="px-6 py-4 font-semibold">Rs. 3000</td>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Microsoft Surface Pro
+                  </th>
+                  <td class="px-6 py-4 font-semibold">Rs. 2000</td>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Magic Mouse 2
+                  </th>
+                  <td class="px-6 py-4 font-semibold">Rs. 500</td>
+                  <td class="px-6 py-4 ">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      send
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
