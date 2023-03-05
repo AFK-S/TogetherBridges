@@ -207,7 +207,7 @@ const Dashboard = () => {
                       </td>
                       <td className="px-6 py-4 ">
                         <span className="text-sm text-gray-500">
-                          {item.amount}
+                          {`Rs. ${item.amount}`}
                         </span>
                       </td>
                     </tr>
