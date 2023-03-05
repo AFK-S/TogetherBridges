@@ -23,7 +23,7 @@ const NGOcard = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14 my-grid overflow-hidden">
       {ngos.map((ngo) => {
         return (
           <Link to={`/ngos/${ngo._id}`} key={ngo._id}>
