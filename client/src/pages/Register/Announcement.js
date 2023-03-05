@@ -3,7 +3,7 @@ import { StateContext } from "../../context/StateContext";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const Announcement = ({ setToggleAnnouncement }) => {
+const Announcement = ({ setToggleAnnouncement, setIsFetched, isFetched }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { setAlert } = useContext(StateContext);
   const [cookies] = useCookies(["user_id"]);
@@ -21,6 +21,7 @@ const Announcement = ({ setToggleAnnouncement }) => {
       );
       console.log(data);
       setAnnouncement("");
+      setIsFetched(!isFetched);
       setToggleAnnouncement(false);
     } catch (error) {
       console.log(error);
