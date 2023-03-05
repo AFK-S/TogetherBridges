@@ -12,9 +12,6 @@ const Events = () => {
 
   const date = new Date();
   const today = date.toISOString().slice(0, 10);
-  console.log(today);
-  console.log(events[0]?.date.slice(0, 10));
-  console.log(events[0]?.date.slice(0, 10) > today);
 
   useEffect(() => {
     (async () => {
@@ -72,7 +69,7 @@ const Events = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
               {events.map((event) => {
-                if (event.date.slice(0, 10) > today) {
+                if (event.date.slice(0, 10) >= today) {
                   return <EventCard event={event} />;
                 } else {
                   return null;

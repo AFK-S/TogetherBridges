@@ -16,7 +16,8 @@ const NGO = () => {
   const [toggleVolunteer, setToggleVolunteer] = useState(false);
   const [toggleDonate, setToggleDonate] = useState(false);
   const [tabCount, setTabCount] = useState(0);
-
+  const date = new Date();
+  const today = date.toISOString().slice(0, 10);
   const changeTab = (count) => {
     setTabCount(count);
   };
@@ -186,7 +187,11 @@ const NGO = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
                 {events.map((event) => {
-                  return <EventCard event={event} />;
+                  if (event.date.slice(0, 10) >= today) {
+                    return <EventCard event={event} />;
+                  } else {
+                    return null;
+                  }
                 })}
               </div>
             </div>
@@ -200,8 +205,11 @@ const NGO = () => {
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
                 {events.map((event) => {
-                  const { name, description } = event;
-                  return <EventCard event={event} />;
+                  if (event.date.slice(0, 10) < today) {
+                    return <EventCard event={event} />;
+                  } else {
+                    return null;
+                  }
                 })}
               </div>
             </div>
