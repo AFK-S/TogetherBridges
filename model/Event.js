@@ -12,7 +12,7 @@ const EventSchema = new Schema(
       type: String,
       trim: true,
       match: [
-        /^[a-zA-Z0-9]+$/,
+        /^[a-zA-Z ]+$/,
         (props) => `${props.value} is not a valid event name`,
       ],
       required: [true, "Please add a Event Name"],
@@ -20,44 +20,17 @@ const EventSchema = new Schema(
     description: {
       type: String,
       trim: true,
-      match: [
-        /^[a-zA-Z0-9]+$/,
-        (props) => `${props.value} is not a valid event description`,
-      ],
       required: [true, "Please add a Event Description"],
+    },
+    place: {
+      type: String,
+      trim: true,
+      match: [/^[a-zA-Z ]+$/, (props) => `${props.value} is not a valid place`],
+      required: [true, "Please add a Place"],
     },
     date: {
       type: Date,
       required: [true, "Please add a Event Date"],
-    },
-    time: {
-      from: {
-        type: String,
-        trim: true,
-        match: [
-          /^[0-9]{2}:[0-9]{2}$/,
-          (props) => `${props.value} is not a valid event time`,
-        ],
-        required: [true, "Please add a Event Time"],
-      },
-      to: {
-        type: String,
-        trim: true,
-        match: [
-          /^[0-9]{2}:[0-9]{2}$/,
-          (props) => `${props.value} is not a valid event time`,
-        ],
-        required: [true, "Please add a Event Time"],
-      },
-    },
-    location: {
-      type: String,
-      trim: true,
-      match: [
-        /^[a-zA-Z0-9]+$/,
-        (props) => `${props.value} is not a valid event location`,
-      ],
-      required: [true, "Please add a Event Location"],
     },
   },
   {

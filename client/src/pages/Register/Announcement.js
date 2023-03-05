@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from "../../context/StateContext";
-import { useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
 const Announcement = ({ setToggleAnnouncement }) => {
-  const { ngo_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const { setAlert } = useContext(StateContext);
   const [cookies] = useCookies(["user_id"]);

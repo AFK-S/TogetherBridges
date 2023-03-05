@@ -1,19 +1,19 @@
 import Event from "../model/Event.js";
 
 const Register = async (req, res) => {
-  const { ngo_id, name, description, date, time, location } = req.body;
+  const { name, description, place, date } = req.body;
+  const { ngo_id } = req.params;
   try {
     await Event.create({
       ngo_id,
       name,
       description,
+      place,
       date,
-      time,
-      location,
     });
     return res.json({
       type: "success",
-      message: "Registered Successfully",
+      message: "Event Registered Successfully",
     });
   } catch (err) {
     console.error(err);
