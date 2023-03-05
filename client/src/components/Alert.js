@@ -14,7 +14,7 @@ const Alert = () => {
   return (
     alert.isAlert && (
       <div
-        className={`fixed bottom-4 left-4 flex p-4 text-sm ${
+        className={`z-50 fixed bottom-4 left-4 flex p-4 text-sm ${
           alert.type === "error" ? "text-red-800" : "text-green-800"
         } border ${
           alert.type === "error" ? "border-red-300" : "border-green-300"

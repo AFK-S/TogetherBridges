@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../../context/StateContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const NGO = ({ setToggleVolunteer }) => {
+const Volunteer = ({ setToggleVolunteer }) => {
   const { ngo_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const { setAlert } = useContext(StateContext);
   const [volunteer, setVolunteer] = useState({
     name: "",
     email_address: "",
@@ -35,8 +36,14 @@ const NGO = ({ setToggleVolunteer }) => {
         gender: "",
         age: "",
       });
+      setToggleVolunteer(false);
     } catch (error) {
       console.log(error);
+      setAlert({
+        isAlert: true,
+        type: error.response.data.type,
+        message: error.response.data.message,
+      });
     }
     setIsLoading(false);
   };
@@ -182,4 +189,4 @@ const NGO = ({ setToggleVolunteer }) => {
   );
 };
 
-export default NGO;
+export default Volunteer;
