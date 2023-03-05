@@ -1,5 +1,4 @@
 import express from "express";
-import { Register as RegisterVolunteer } from "../controllers/Volunteer.js";
 import {
   Register as RegisterNGO,
   GetNGOs,
@@ -9,8 +8,15 @@ import {
   Register as RegisterAnnouncement,
   GetAnnouncement,
 } from "../controllers/Announcement.js";
+import {
+  Register as RegisterVolunteer,
+  GetVolunteer,
+} from "../controllers/Volunteer.js";
 import { Register as RegisterEvent, GetEvents } from "../controllers/Event.js";
-import { Register as RegisterDonate } from "../controllers/Donate.js";
+import {
+  Register as RegisterDonate,
+  GetDonate,
+} from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
 import chatbot_response from "../controllers/ChatBot.js";
 
@@ -40,5 +46,7 @@ router.get("/ngos", GetNGOs);
 router.get("/ngos/:ngo_id", GetNGO);
 router.get("/announcements/:ngo_id", GetAnnouncement);
 router.get("/events/:ngo_id", GetEvents);
+router.get("/volunteers/:ngo_id", GetVolunteer);
+router.get("/donates/:ngo_id", GetDonate);
 
 export default router;

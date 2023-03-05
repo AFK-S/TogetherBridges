@@ -30,9 +30,7 @@ const GetVolunteer = async (req, res) => {
   const { ngo_id } = req.params;
   try {
     const response = await Volunteer.find({
-      interested_ngo: {
-        $in: [ngo_id],
-      },
+      ngo_id: ngo_id,
     }).lean();
     return res.send(response);
   } catch (err) {

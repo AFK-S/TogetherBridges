@@ -10,6 +10,8 @@ const Dashboard = () => {
   const [isFetched, setIsFetched] = useState(false);
   const [ngo, setNgo] = useState({});
   const [announcement, setAnnouncement] = useState([]);
+  const [volunteer, setVolunteer] = useState([]);
+  const [donate, setDonate] = useState([]);
   const [cookies] = useCookies(["user_id"]);
   const [toggleAnnouncement, setToggleAnnouncement] = useState(false);
   const [toggleEvent, setToggleEvent] = useState(false);
@@ -31,6 +33,14 @@ const Dashboard = () => {
           `/api/announcements/${cookies.user_id}`
         );
         setAnnouncement(announcement);
+        const { data: volunteer } = await axios.get(
+          `/api/volunteers/${cookies.user_id}`
+        );
+        setVolunteer(volunteer);
+        const { data: donate } = await axios.get(
+          `/api/donates/${cookies.user_id}`
+        );
+        setDonate(donate);
       } catch (error) {
         console.log(error);
         setAlert({
@@ -125,141 +135,84 @@ const Dashboard = () => {
       )}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 my-10">
         <div>
-          <h2 className="my-5 font-medium text-xl">Interested:</h2>
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <h2 className="my-5 font-medium text-xl">Interested Volunteer:</h2>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Name
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Email
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    ABC FDS
-                  </th>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Microsoft Surface Pro
-                  </th>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="mailto:"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Magic Mouse 2
-                  </th>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
+                {volunteer.map((item) => {
+                  return (
+                    <tr className="bg-white border-b hover:bg-gray-50">
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {item.name}
+                      </th>
+                      <td className="px-6 py-4 ">
+                        <a
+                          href="#"
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+                          {item.email_address}
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
         <div>
           <h2 className="my-5 font-medium text-xl">Doners:</h2>
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Name
                   </th>
-                  <th scope="col" class="px-6 py-3">
-                    Amount
-                  </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Email
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Amount
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    ABC FDS
-                  </th>
-                  <td class="px-6 py-4 font-semibold">Rs. 3000</td>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Microsoft Surface Pro
-                  </th>
-                  <td class="px-6 py-4 font-semibold">Rs. 2000</td>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    Magic Mouse 2
-                  </th>
-                  <td class="px-6 py-4 font-semibold">Rs. 500</td>
-                  <td class="px-6 py-4 ">
-                    <a
-                      href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      send
-                    </a>
-                  </td>
-                </tr>
+                {donate.map((item) => {
+                  return (
+                    <tr className="bg-white border-b hover:bg-gray-50">
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {item.name || "-"}
+                      </th>
+                      <td className="px-6 py-4 ">
+                        <div className="font-medium text-blue-600">
+                          {item.email_address || "-"}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 ">
+                        <span className="text-sm text-gray-500">
+                          {item.amount}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

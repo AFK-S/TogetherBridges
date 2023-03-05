@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StateContext } from "../context/StateContext";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import EventCard from "../components/EventCard";
 import Volunteer from "./Register/Volunteer";
 import axios from "axios";
 import Donate from "./Register/Donate";
 
 const NGO = () => {
-  const events = useSelector((state) => state.EventsSlice);
-  const [ngo, setNgo] = useState({});
   const { ngo_id } = useParams();
   const { setLoading } = useContext(StateContext);
 
+  const [ngo, setNgo] = useState({});
+  const [announcement, setAnnouncement] = useState([]);
+  const [events, setEvents] = useState([]);
   const [toggleVolunteer, setToggleVolunteer] = useState(false);
   const [toggleDonate, setToggleDonate] = useState(false);
   const [tabCount, setTabCount] = useState(0);
@@ -27,6 +27,12 @@ const NGO = () => {
       try {
         const { data } = await axios.get(`/api/ngos/${ngo_id}`);
         setNgo(data);
+        const { data: announcement } = await axios.get(
+          `/api/announcements/${ngo_id}`
+        );
+        setAnnouncement(announcement);
+        const { data: event } = await axios.get(`/api/events/${ngo_id}`);
+        setEvents(event);
       } catch (error) {
         console.log(error);
         alert("Something went wrong");
@@ -110,14 +116,14 @@ const NGO = () => {
           </div>
         </div>
         <div className="tabs my-16">
-          <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+          <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
             <li className="mr-2" onClick={() => changeTab(0)}>
               <p
                 className={` ${
                   tabCount === 0
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Announcement
               </p>
@@ -128,7 +134,7 @@ const NGO = () => {
                   tabCount === 1
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Upcoming
               </p>
@@ -139,7 +145,7 @@ const NGO = () => {
                   tabCount === 2
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Previous
               </p>
@@ -150,7 +156,7 @@ const NGO = () => {
                   tabCount === 3
                     ? "text-blue-600 bg-gray-100 rounded-t-lg active "
                     : ""
-                } inline-block p-4  dark:bg-gray-800 dark:text-blue-500 cursor-pointer`}
+                } inline-block p-4 cursor-pointer`}
               >
                 Videos
               </p>
@@ -181,9 +187,8 @@ const NGO = () => {
               aria-labelledby="dashboard-tab"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.upcoming.map((event) => {
-                  const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                {events.map((event) => {
+                  return <EventCard event={event} />;
                 })}
               </div>
             </div>
@@ -196,9 +201,9 @@ const NGO = () => {
               aria-labelledby="settings-tab"
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.previous.map((event) => {
+                {events.map((event) => {
                   const { name, description } = event;
-                  return <EventCard name={name} description={description} />;
+                  return <EventCard event={event} />;
                 })}
               </div>
             </div>
