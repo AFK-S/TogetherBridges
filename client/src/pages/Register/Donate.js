@@ -36,6 +36,16 @@ const Donate = ({ setToggleDonate }) => {
         amount: "",
         message: "",
       });
+      axios
+        .post(`/stripe/create-checkout-session`, { amount: donate.amount })
+        .then((res) => {
+          if (res.data.url) {
+            window.location.href = res.data.url;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setToggleDonate(false);
     } catch (error) {
       console.log(error);
