@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const OthersSlice = createSlice({
   name: "others",
   initialState: {
+    isLogin: false,
     isLoading: false,
     Alert: {
       isAlert: false,
@@ -11,6 +12,12 @@ const OthersSlice = createSlice({
     },
   },
   reducers: {
+    checkLogin: (state, action) => {
+      state.isLogin = action.payload;
+    },
+    setIsLogin: (state, action) => {
+      state.isLogin = action.payload;
+    },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
     },
@@ -24,5 +31,5 @@ const OthersSlice = createSlice({
   },
 });
 
-export const { setLoading, setAlert } = OthersSlice.actions;
+export const { checkLogin, setIsLogin, setLoading, setAlert } = OthersSlice.actions;
 export default OthersSlice.reducer;

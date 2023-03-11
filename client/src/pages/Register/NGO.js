@@ -1,9 +1,8 @@
-import { StateContext } from "../../context/StateContext";
-import { setAlert } from "../../store/slice/Others";
-import React, { useState, useContext } from "react";
+import { setIsLogin, setAlert } from "../../store/slice/Others";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 const NGO = () => {
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ const NGO = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
-  const { setIsLogin } = useContext(StateContext);
   const [register, setRegister] = useState({
     name: "",
     email_address: "",
@@ -56,7 +54,7 @@ const NGO = () => {
         password: "",
         cPassword: "",
       });
-      setIsLogin(true);
+      dispatch(setIsLogin(true));
     } catch (error) {
       console.log(error);
       dispatch(

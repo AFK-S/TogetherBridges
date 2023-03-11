@@ -19,6 +19,7 @@ import {
 } from "../controllers/Donate.js";
 import { Login, Logout } from "../controllers/index.js";
 import chatbot_response from "../controllers/ChatBot.js";
+import { Dashboard } from "../controllers/Dashboard.js";
 
 const router = express.Router();
 
@@ -48,5 +49,6 @@ router.get("/announcements/:ngo_id", GetAnnouncement);
 router.get("/events/:ngo_id", GetEvents);
 router.get("/volunteers/:ngo_id", GetVolunteer);
 router.get("/donates/:ngo_id", GetDonate);
+router.get("/dashboard", Dashboard);
 
 export default router;

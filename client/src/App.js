@@ -1,43 +1,35 @@
+import { checkLogin } from "./store/slice/Others";
+import EditProfile from "./pages/EditProfile";
+import { setNGOs } from "./store/slice/NGOs";
+import Register from "./pages/Register/NGO";
+import Loading from "./components/Loading";
+import Dashboard from "./pages/Dashboard";
+import { useDispatch } from "react-redux";
+import { useCookies } from "react-cookie";
+import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Alert from "./components/Alert";
+import Landing from "./pages/Landing";
+import Events from "./pages/Events";
+import Login from "./pages/Login";
+import NGOs from "./pages/NGOs";
+import NGO from "./pages/NGO";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import React, { useContext, useEffect } from "react";
-import { StateContext } from "./context/StateContext";
-import Navbar from "./components/Navbar";
-import Landing from "./pages/Landing";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Register from "./pages/Register/NGO";
-import NGOs from "./pages/NGOs";
-import NGO from "./pages/NGO";
-import Events from "./pages/Events";
-import EditProfile from "./pages/EditProfile";
-import Loading from "./components/Loading";
-import Alert from "./components/Alert";
-import { useDispatch } from "react-redux";
-import { setNGOs } from "./store/slice/NGOs";
-import { setLoading, setAlert } from "./store/slice/Others";
 
 function App() {
-  const { isLogin } = useContext(StateContext);
   const dispatch = useDispatch();
+  const { isLogin } = useSelector(state => state.Others)
+  const [cookies] = useCookies(["user_id"]);
 
   useEffect(() => {
-    (async () => {
-      dispatch(setLoading(true));
-      try {
-        await dispatch(setNGOs());
-      } catch (error) {
-        setAlert({
-          message: error.response.data.message,
-          type: "error",
-        });
-      }
-      dispatch(setLoading(false));
-    })();
+    dispatch(checkLogin(cookies.user_id ? true : false))
+    dispatch(setNGOs());
   }, []);
   return (
     <>

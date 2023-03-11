@@ -1,16 +1,14 @@
-import { StateContext } from "../context/StateContext";
-import { setAlert } from "../store/slice/Others";
-import React, { useState, useContext } from "react";
+import { setIsLogin, setAlert } from "../store/slice/Others";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { setIsLogin } = useContext(StateContext);
   const [login, setLogin] = useState({
     email_address: "",
     password: "",
@@ -30,7 +28,7 @@ const Login = () => {
         email_address: "",
         password: "",
       });
-      setIsLogin(true);
+      dispatch(setIsLogin(true))
     } catch (error) {
       console.log(error);
       dispatch(
