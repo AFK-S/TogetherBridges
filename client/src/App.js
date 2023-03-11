@@ -1,4 +1,4 @@
-import { checkLogin } from "./store/slice/Others";
+import { checkLogin, setLoading } from "./store/slice/Others";
 import EditProfile from "./pages/EditProfile";
 import { setNGOs } from "./store/slice/NGOs";
 import Register from "./pages/Register/NGO";
@@ -28,8 +28,12 @@ function App() {
   const [cookies] = useCookies(["user_id"]);
 
   useEffect(() => {
-    dispatch(checkLogin(cookies.user_id ? true : false))
-    dispatch(setNGOs());
+    (async () => {
+      await dispatch(setLoading(true));
+      await dispatch(checkLogin(cookies.user_id ? true : false));
+      await dispatch(setNGOs());
+      await dispatch(setLoading(false));
+    })();
   }, []);
   return (
     <>

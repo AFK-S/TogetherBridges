@@ -1,8 +1,8 @@
+import { setIsLogin, setLoading } from "../store/slice/Others";
 import { setDashboard } from "../store/slice/Dashboard";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
 import Announcement from "./Register/Announcement";
-import { setIsLogin } from "../store/slice/Others";
 import { NavLink } from "react-router-dom";
 import Event from "./Register/Event";
 import axios from "axios";
@@ -21,7 +21,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    dispatch(setDashboard());
+    (async () => {
+      await dispatch(setLoading(true));
+      await dispatch(setDashboard());
+      await dispatch(setLoading(false));
+    })();
   }, [isFetched]);
 
   return (

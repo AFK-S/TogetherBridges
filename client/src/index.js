@@ -1,4 +1,3 @@
-import StateProvider from "./context/StateContext";
 import { CookiesProvider } from "react-cookie";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -11,9 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <CookiesProvider>
-      <StateProvider>
-        <App />
-      </StateProvider>
+      <App />
     </CookiesProvider>
   </Provider>
 );
