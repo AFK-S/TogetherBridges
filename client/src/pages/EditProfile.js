@@ -1,57 +1,58 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setUser, updateProfile } from "../store/slice/UserSlice";
+import React, { useState } from "react";
 
 const EditProfile = () => {
-  const user = useSelector((state) => state.UserSlice);
-  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    place: "",
+    about: "",
+    phone_number: "",
+    email_address: "",
+    in_charge_name: "",
+  });
 
-  const handleChange = (e) => {
+  const onChange = (e) => {
     const { name, value } = e.target;
-    dispatch(setUser({ name, value }));
+    setUser({ ...user, [name]: value });
   };
 
   return (
     <div className="ngo w-10/12 md:w-8/12 mx-auto py-10 md:py-16">
       <div className="flex my-5">
-        <span className="bg-blue-100 text-blue-800 text-sm font-medium py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+        <span className="bg-blue-100 text-blue-800 text-sm font-medium py-0.5 rounded ">
           <input
             type="tel"
             name="location"
-            className="bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Enter Your Phone Number"
-            value={user.location}
+            className="bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2"
+            placeholder="Place"
+            value={user.place}
             required
-            onChange={handleChange}
+            onChange={onChange}
           />
         </span>
       </div>
-
       <div>
         <div className="flex justify-between">
-          <h1 className="font-semibold text-5xl">{` ${user.name}`}</h1>
+          <h1 className="font-semibold text-5xl">{user.name}</h1>
         </div>
         <p className="text-md text-gray-500 font-light mt-6">
-          {user.description}
+          {user.about}
         </p>
         <div className="my-10">
           <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
           <div>
-            <h1 className="font-semibold text-xl">Address</h1>
+            <h1 className="font-semibold text-xl">About</h1>
             <textarea
               name="address"
-              onChange={handleChange}
+              onChange={onChange}
               id="message"
               rows="4"
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-blue-500 mt-4"
               placeholder="Write your thoughts here..."
-              value={user.address}
+              value={user.about}
             ></textarea>
           </div>
           <div className="divider w-full bg-slate-200 h-0.5 my-3"></div>
         </div>
       </div>
-
       <div className="flex">
         <div className="icons flex flex-col ">
           <div className="flex items-center my-3 text-md text-gray-500">
@@ -59,12 +60,12 @@ const EditProfile = () => {
             <p>Tel:</p>
             <input
               type="tel"
-              name="phone"
-              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="phone_number"
+              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
               placeholder="Enter Your Phone Number"
-              value={user.phone}
+              value={user.phone_number}
               required
-              onChange={handleChange}
+              onChange={onChange}
             />
           </div>
           <div className="flex items-center my-3 text-md text-gray-500">
@@ -72,35 +73,32 @@ const EditProfile = () => {
             <p>Email:</p>
             <input
               type="email"
-              name="email"
-              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="email_address"
+              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
               placeholder="Enter Your Email Address"
-              value={user.email}
-              onChange={handleChange}
+              value={user.email_address}
+              onChange={onChange}
               required
             />
           </div>
           <div className="flex items-center my-3 text-md text-gray-500">
             <i className="fa-solid fa-user mr-4 text-md"></i>
-            <p>Incharge:</p>
+            <p>Incharge Name:</p>
             <input
               type="text"
-              name="incharge"
-              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              name="in_charge_name"
+              className=" ml-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5"
               placeholder="Enter Your Phone Number"
-              value={user.incharge}
+              value={user.in_charge_name}
               required
-              onChange={handleChange}
+              onChange={onChange}
             />
           </div>
         </div>
       </div>
       <button
-        onClick={() => {
-          dispatch(updateProfile());
-        }}
-        type="button"
-        className=" mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        type="submit"
+        className=" mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
       >
         Save Changes
       </button>
