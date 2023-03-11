@@ -1,7 +1,7 @@
 import NGO from "../model/NGO.js";
-import { Register_NGO } from "./mailer.js";
+import { Register_NGO as NGO_mail } from "./mailer.js";
 
-const Register = async (req, res) => {
+const Register_NGO = async (req, res) => {
   try {
     const response = await NGO.create(req.body);
     res.cookie("user_id", response._id).json({
@@ -9,7 +9,7 @@ const Register = async (req, res) => {
       message: "Registered Successfully",
     });
     const { name, email_address, password } = response;
-    Register_NGO(name, email_address, password);
+    NGO_mail(name, email_address, password);
   } catch (err) {
     console.error(err);
     res.status(400).json({ type: "error", message: err.message });
@@ -43,15 +43,4 @@ const GetNGOs = async (req, res) => {
   }
 };
 
-const GetNGO = async (req, res) => {
-  const { ngo_id } = req.params;
-  try {
-    const response = await NGO.findById(ngo_id).lean();
-    return res.send(response);
-  } catch (err) {
-    console.error(err);
-    res.status(400).json({ type: "error", message: err.message });
-  }
-};
-
-export { Register, GetNGOs, GetNGO };
+export { Register_NGO, GetNGOs };

@@ -3,7 +3,7 @@ import Volunteer from "../model/Volunteer.js";
 import NGO from "../model/NGO.js";
 import { Event as Event_mail } from "./mailer.js";
 
-const Register = async (req, res) => {
+const Register_Event = async (req, res) => {
   const { name, description, place, date } = req.body;
   const { ngo_id } = req.params;
   try {
@@ -36,17 +36,4 @@ const Register = async (req, res) => {
   }
 };
 
-const GetEvents = async (req, res) => {
-  const { ngo_id } = req.params;
-  try {
-    const response = await Event.find({
-      ngo_id: ngo_id,
-    }).lean();
-    return res.send(response);
-  } catch (err) {
-    console.error(err);
-    res.status(400).json({ type: "error", message: err.message });
-  }
-};
-
-export { Register, GetEvents };
+export default Register_Event;
