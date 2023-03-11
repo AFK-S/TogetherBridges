@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
-import { StateContext } from "../../context/StateContext";
+import { setAlert } from "../../store/slice/Others";
 import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Donate = ({ setToggleDonate }) => {
   const { ngo_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const { setAlert } = useContext(StateContext);
   const [donate, setDonate] = useState({
     name: "",
     email_address: "",
@@ -24,11 +23,7 @@ const Donate = ({ setToggleDonate }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post(
-        `/api/register/donate/${ngo_id}`,
-        donate
-      );
-      console.log(data);
+      await axios.post(`/api/register/donate/${ngo_id}`, donate);
       setDonate({
         name: "",
         email_address: "",

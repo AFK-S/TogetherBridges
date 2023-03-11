@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
-import { StateContext } from "../../context/StateContext";
+import { setAlert } from "../../store/slice/Others";
 import { useCookies } from "react-cookie";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Event = ({ setToggleEvent }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [cookies] = useCookies(["user_id"]);
-  const { setAlert } = useContext(StateContext);
   const [event, setEvent] = useState({
     name: "",
     description: "",
@@ -23,11 +22,7 @@ const Event = ({ setToggleEvent }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post(
-        `/api/register/event/${cookies.user_id}`,
-        event
-      );
-      console.log(data);
+      await axios.post(`/api/register/event/${cookies.user_id}`, event);
       setEvent({
         name: "",
         description: "",

@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
-import { StateContext } from "../../context/StateContext";
+import { setAlert } from "../../store/slice/Others";
 import { useCookies } from "react-cookie";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Announcement = ({ setToggleAnnouncement, setIsFetched, isFetched }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { setAlert } = useContext(StateContext);
   const [cookies] = useCookies(["user_id"]);
   const [announcement, setAnnouncement] = useState("");
 
@@ -13,16 +12,12 @@ const Announcement = ({ setToggleAnnouncement, setIsFetched, isFetched }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post(
-        `/api/register/announcement/${cookies.user_id}`,
-        {
-          description: announcement,
-        }
-      );
-      console.log(data);
+      await axios.post(`/api/register/announcement/${cookies.user_id}`, {
+        description: announcement,
+      });
       setAnnouncement("");
-      setIsFetched(!isFetched);
       setToggleAnnouncement(false);
+      setIsFetched(!isFetched);
     } catch (error) {
       console.log(error);
       setAlert({

@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
 import { StateContext } from "../../context/StateContext";
+import { setAlert } from "../../store/slice/Others";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -7,7 +8,7 @@ const NGO = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
-  const { setIsLogin, setAlert } = useContext(StateContext);
+  const { setIsLogin } = useContext(StateContext);
   const [register, setRegister] = useState({
     name: "",
     email_address: "",
@@ -37,8 +38,7 @@ const NGO = () => {
     }
     setIsLoading(true);
     try {
-      const { data } = await axios.post("/api/register/ngo", register);
-      console.log(data);
+      await axios.post("/api/register/ngo", register);
       setRegister({
         name: "",
         email_address: "",
