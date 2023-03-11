@@ -1,30 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StateContext } from "../context/StateContext";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./NGOs.css";
+import { useSelector } from "react-redux";
 
 const NGOcard = () => {
-  const [ngos, setNgos] = useState([]);
-  const { setLoading } = useContext(StateContext);
-
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get("/api/ngos");
-        setNgos(data);
-      } catch (error) {
-        console.log(error);
-        alert("Something went wrong");
-      }
-      setLoading(false);
-    })();
-  }, []);
+  const { data: NGOs } = useSelector((state) => state.NGOs);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto p-20 gap-14 my-grid overflow-hidden">
-      {ngos.map((ngo) => {
+      {NGOs.map((ngo) => {
         return (
           <Link to={`/ngos/${ngo._id}`} key={ngo._id}>
             <div className="card shadow-xl rounded-xl">

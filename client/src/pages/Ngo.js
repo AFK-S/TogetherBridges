@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StateContext } from "../context/StateContext";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EventCard from "../components/EventCard";
 import Volunteer from "./Register/Volunteer";
-import axios from "axios";
 import Donate from "./Register/Donate";
+import { useSelector } from "react-redux";
 
 const NGO = () => {
   const { ngo_id } = useParams();
-  const { setLoading } = useContext(StateContext);
+  const { data: NGOs } = useSelector((state) => state.NGOs);
 
   const [ngo, setNgo] = useState({});
-  const [announcement, setAnnouncement] = useState([]);
-  const [events, setEvents] = useState([]);
   const [toggleVolunteer, setToggleVolunteer] = useState(false);
   const [toggleDonate, setToggleDonate] = useState(false);
   const [tabCount, setTabCount] = useState(0);
@@ -23,24 +20,9 @@ const NGO = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get(`/api/ngos/${ngo_id}`);
-        setNgo(data);
-        const { data: announcement } = await axios.get(
-          `/api/announcements/${ngo_id}`
-        );
-        setAnnouncement(announcement);
-        const { data: event } = await axios.get(`/api/events/${ngo_id}`);
-        setEvents(event);
-      } catch (error) {
-        console.log(error);
-        alert("Something went wrong");
-      }
-      setLoading(false);
-    })();
-  }, []);
+    const NGO = NGOs.filter((ngo) => ngo._id === ngo_id);
+    setNgo(NGO[0] || {});
+  }, [NGOs]);
 
   return (
     <>
@@ -122,7 +104,7 @@ const NGO = () => {
               <p
                 className={` ${
                   tabCount === 0
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active"
                     : ""
                 } inline-block p-4 cursor-pointer`}
               >
@@ -133,7 +115,7 @@ const NGO = () => {
               <p
                 className={` ${
                   tabCount === 1
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active"
                     : ""
                 } inline-block p-4 cursor-pointer`}
               >
@@ -144,7 +126,7 @@ const NGO = () => {
               <p
                 className={` ${
                   tabCount === 2
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active"
                     : ""
                 } inline-block p-4 cursor-pointer`}
               >
@@ -155,7 +137,7 @@ const NGO = () => {
               <p
                 className={` ${
                   tabCount === 3
-                    ? "text-blue-600 bg-gray-100 rounded-t-lg active "
+                    ? "text-blue-600 bg-gray-100 rounded-t-lg active"
                     : ""
                 } inline-block p-4 cursor-pointer`}
               >
@@ -164,87 +146,70 @@ const NGO = () => {
             </li>
           </ul>
           <div id="myTabContent" className="my-3">
-            <div
-              className={` ${
-                tabCount === 0 ? "" : "hidden"
-              } " id="profile" role="tabpanel" aria-labelledby="profile-tab`}
-            >
-              {announcement.map((ann) => {
-                return (
-                  <p className="my-5 rounded-lg bg-gray-50 dark:bg-gray-800 p-4 ">
-                    <span className="font-semibold">{ann.description}</span>
-                  </p>
-                );
-              })}
+            <div className={`${tabCount === 0 ? "" : "hidden"}`}>
+              {ngo.announcements &&
+                ngo.announcements.map((ann) => {
+                  return (
+                    <p
+                      className="my-5 rounded-lg bg-gray-50 p-4 border shadow"
+                      key={ann._id}
+                    >
+                      <span className="font-semibold">{ann.description}</span>
+                    </p>
+                  );
+                })}
             </div>
             <div
-              className={` ${
+              className={`${
                 tabCount === 1 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
-              id="dashboard"
-              role="tabpanel"
-              aria-labelledby="dashboard-tab"
+              } p-4 rounded-lg bg-gray-50`}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.map((event) => {
-                  if (event.date.slice(0, 10) >= today) {
-                    return <EventCard event={event} />;
-                  } else {
-                    return null;
-                  }
-                })}
+              <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto gap-10">
+                {ngo.events &&
+                  ngo.events.map((event) => {
+                    if (event.date.slice(0, 10) >= today) {
+                      return <EventCard event={event} key={event._id} />;
+                    }
+                  })}
               </div>
             </div>
             <div
-              className={` ${
+              className={`${
                 tabCount === 2 ? "" : "hidden"
-              } p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
-              id="settings"
-              role="tabpanel"
-              aria-labelledby="settings-tab"
+              } p-4 rounded-lg bg-gray-50`}
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto  gap-10">
-                {events.map((event) => {
-                  if (event.date.slice(0, 10) < today) {
-                    return <EventCard event={event} />;
-                  } else {
-                    return null;
-                  }
-                })}
+                {ngo.events &&
+                  ngo.events.map((event) => {
+                    if (event.date.slice(0, 10) < today) {
+                      return <EventCard event={event} key={event._id} />;
+                    }
+                  })}
               </div>
             </div>
-            <div
-              className={` ${
-                tabCount === 3 ? "" : "hidden"
-              } p-4 rounded-lg  dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab`}
-              id="settings"
-              role="tabpanel"
-              aria-labelledby="settings-tab"
-            >
+            <div className={`${tabCount === 3 ? "" : "hidden"} p-4 rounded-lg`}>
               <iframe
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/sCPREA5NFTU"
                 title="YouTube video player"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>
         </div>
-
-        <footer className=" bg-white rounded-lg py-5  md:px-6 md:py-8 dark:bg-gray-900">
+        <footer className="bg-white rounded-lg py-5 md:px-6">
           <div className="sm:flex sm:items-center sm:justify-between">
             <a
               href={`${ngo.website_url}`}
               className="flex items-center mb-4 sm:mb-0"
             >
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap">
                 {ngo.name}
               </span>
             </a>
-            <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+            <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0">
               <li>
                 <a
                   href={`${ngo.instagram_url}`}
@@ -292,12 +257,9 @@ const NGO = () => {
               </li>
             </ul>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-          <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            <a href="https://localhost:3000" className="hover:underline">
-              TogetherBridges™
-            </a>
-            . All Rights Reserved.
+          <hr className="my-4 border-gray-200 sm:mx-auto lg:my-5" />
+          <span className="block text-sm text-gray-500 text-center">
+            TogetherBridges™. All Rights Reserved.
           </span>
         </footer>
       </div>

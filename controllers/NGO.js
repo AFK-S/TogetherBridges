@@ -18,7 +18,24 @@ const Register = async (req, res) => {
 
 const GetNGOs = async (req, res) => {
   try {
-    const response = await NGO.find().lean();
+    const response = await NGO.aggregate([
+      {
+        $lookup: {
+          from: "announcements",
+          localField: "_id",
+          foreignField: "ngo_id",
+          as: "announcements",
+        },
+      },
+      {
+        $lookup: {
+          from: "events",
+          localField: "_id",
+          foreignField: "ngo_id",
+          as: "events",
+        },
+      },
+    ]);
     return res.send(response);
   } catch (err) {
     console.error(err);

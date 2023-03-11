@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StateContext } from "./context/StateContext";
 import Navbar from "./components/Navbar";
 import Landing from "./pages/Landing";
@@ -17,9 +17,28 @@ import Events from "./pages/Events";
 import EditProfile from "./pages/EditProfile";
 import Loading from "./components/Loading";
 import Alert from "./components/Alert";
+import { useDispatch } from "react-redux";
+import { setNGOs } from "./store/slice/NGOs";
+import { setLoading, setAlert } from "./store/slice/Others";
 
 function App() {
   const { isLogin } = useContext(StateContext);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      dispatch(setLoading(true));
+      try {
+        await dispatch(setNGOs());
+      } catch (error) {
+        setAlert({
+          message: error.response.data.message,
+          type: "error",
+        });
+      }
+      dispatch(setLoading(false));
+    })();
+  }, []);
   return (
     <>
       <Router>
