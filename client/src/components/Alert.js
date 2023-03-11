@@ -1,8 +1,9 @@
-import React, { useEffect, useContext } from "react";
-import { StateContext } from "../context/StateContext";
+import { setAlert } from "../store/slice/Others";
+import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
 const Alert = () => {
-  const { alert, setAlert } = useContext(StateContext);
+  const { Alert: alert } = useSelector((state) => state.Others);
 
   useEffect(() => {
     const timer = setTimeout(() => {

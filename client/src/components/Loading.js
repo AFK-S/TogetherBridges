@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import { StateContext } from "../context/StateContext";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Loading = ({ pageLoading }) => {
-  const { loading } = useContext(StateContext);
+  const { isLoading } = useSelector((state) => state.Others);
   return (
     <>
-      {(loading || pageLoading) && (
+      {(isLoading || pageLoading) && (
         <div
           className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center ${
-            loading ? "bg-white/90" : "bg-white/90"
+            isLoading ? "bg-white/90" : "bg-white/90"
           } z-[9999]`}
         >
           <svg
