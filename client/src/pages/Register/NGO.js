@@ -3,8 +3,11 @@ import { setAlert } from "../../store/slice/Others";
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const NGO = () => {
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
@@ -56,11 +59,13 @@ const NGO = () => {
       setIsLogin(true);
     } catch (error) {
       console.log(error);
-      setAlert({
-        isAlert: true,
-        type: error.response.data.type,
-        message: error.response.data.message,
-      });
+      dispatch(
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        })
+      );
     }
     setIsLoading(false);
   };

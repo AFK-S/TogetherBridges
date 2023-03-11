@@ -2,8 +2,11 @@ import { setAlert } from "../../store/slice/Others";
 import { useCookies } from "react-cookie";
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Event = ({ setToggleEvent }) => {
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [cookies] = useCookies(["user_id"]);
   const [event, setEvent] = useState({
@@ -32,11 +35,13 @@ const Event = ({ setToggleEvent }) => {
       setToggleEvent(false);
     } catch (error) {
       console.log(error);
-      setAlert({
-        isAlert: true,
-        type: error.response.data.type,
-        message: error.response.data.message,
-      });
+      dispatch(
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        })
+      );
     }
     setIsLoading(false);
   };

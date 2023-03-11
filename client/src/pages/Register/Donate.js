@@ -2,8 +2,11 @@ import { setAlert } from "../../store/slice/Others";
 import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Donate = ({ setToggleDonate }) => {
+  const dispatch = useDispatch();
+
   const { ngo_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [donate, setDonate] = useState({
@@ -44,11 +47,13 @@ const Donate = ({ setToggleDonate }) => {
       setToggleDonate(false);
     } catch (error) {
       console.log(error);
-      setAlert({
-        isAlert: true,
-        type: error.response.data.type,
-        message: error.response.data.message,
-      });
+      dispatch(
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        })
+      );
     }
     setIsLoading(false);
   };

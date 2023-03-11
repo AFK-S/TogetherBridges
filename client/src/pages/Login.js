@@ -1,12 +1,16 @@
-import React, { useState, useContext } from "react";
 import { StateContext } from "../context/StateContext";
+import { setAlert } from "../store/slice/Others";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { setIsLogin, setAlert } = useContext(StateContext);
+  const { setIsLogin } = useContext(StateContext);
   const [login, setLogin] = useState({
     email_address: "",
     password: "",
@@ -21,8 +25,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const { data } = await axios.post("/api/login", login);
-      console.log(data);
+      await axios.post("/api/login", login);
       setLogin({
         email_address: "",
         password: "",
@@ -30,11 +33,13 @@ const Login = () => {
       setIsLogin(true);
     } catch (error) {
       console.log(error);
-      setAlert({
-        isAlert: true,
-        type: error.response.data.type,
-        message: error.response.data.message,
-      });
+      dispatch(
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        })
+      );
     }
     setIsLoading(false);
   };

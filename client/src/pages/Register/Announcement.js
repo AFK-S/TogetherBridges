@@ -1,9 +1,12 @@
 import { setAlert } from "../../store/slice/Others";
+import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import React, { useState } from "react";
 import axios from "axios";
 
 const Announcement = ({ setToggleAnnouncement, setIsFetched, isFetched }) => {
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [cookies] = useCookies(["user_id"]);
   const [announcement, setAnnouncement] = useState("");
@@ -20,11 +23,13 @@ const Announcement = ({ setToggleAnnouncement, setIsFetched, isFetched }) => {
       setIsFetched(!isFetched);
     } catch (error) {
       console.log(error);
-      setAlert({
-        isAlert: true,
-        type: error.response.data.type,
-        message: error.response.data.message,
-      });
+      dispatch(
+        setAlert({
+          isAlert: true,
+          type: error.response.data.type,
+          message: error.response.data.message,
+        })
+      );
     }
     setIsLoading(false);
   };

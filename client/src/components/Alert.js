@@ -1,13 +1,16 @@
 import { setAlert } from "../store/slice/Others";
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const Alert = () => {
+  const dispatch = useDispatch();
+
   const { Alert: alert } = useSelector((state) => state.Others);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setAlert({ isAlert: false, type: "", message: "" });
+      dispatch(setAlert({ isAlert: false, type: "", message: "" }));
     }, 3000);
     return () => clearTimeout(timer);
   }, [alert]);
