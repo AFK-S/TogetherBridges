@@ -1,5 +1,5 @@
 {
-  "name": "afk-s_technightcsi",
+  "name": "TogetherBridges",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,16 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adi50920/AFK-S_TechNightCSI.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/adi50920/AFK-S_TechNightCSI/issues"
-  },
-  "homepage": "https://github.com/adi50920/AFK-S_TechNightCSI#readme",
   "dependencies": {
     "@tensorflow/tfjs-node": "^4.2.0",
     "cookie-parser": "^1.4.6",
