@@ -12,7 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register/NGO";
 import NGOs from "./pages/NGOs";
-import NGO from "./pages/NGO";
+import NGO from "./pages/Ngo";
 import Events from "./pages/Events";
 import EditProfile from "./pages/EditProfile";
 import Loading from "./components/Loading";
