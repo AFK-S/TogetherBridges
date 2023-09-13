@@ -44,6 +44,6 @@ const DonateSchema = new Schema(
   }
 );
 
-const Donate = connection.useDb("TECH-NIGHT").model("DONATE", DonateSchema);
+const Donate = connection.useDb("TogetherBridges").model("DONATE", DonateSchema);
 
 export default Donate;

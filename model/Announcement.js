@@ -20,7 +20,7 @@ const AnnouncementSchema = new Schema(
 );
 
 const Announcement = connection
-  .useDb("TECH-NIGHT")
+  .useDb("TogetherBridges")
   .model("ANNOUNCEMENT", AnnouncementSchema);
 
 export default Announcement;

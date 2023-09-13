@@ -38,6 +38,6 @@ const EventSchema = new Schema(
   }
 );
 
-const Event = connection.useDb("TECH-NIGHT").model("EVENT", EventSchema);
+const Event = connection.useDb("TogetherBridges").model("EVENT", EventSchema);
 
 export default Event;

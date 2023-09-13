@@ -54,7 +54,7 @@ const VolunteerSchema = new Schema(
 );
 
 const Volunteer = connection
-  .useDb("TECH-NIGHT")
+  .useDb("TogetherBridges")
   .model("VOLUNTEER", VolunteerSchema);
 
 export default Volunteer;

@@ -86,6 +86,6 @@ const NGOSchema = new Schema(
   }
 );
 
-const NGO = connection.useDb("TECH-NIGHT").model("NGO", NGOSchema);
+const NGO = connection.useDb("TogetherBridges").model("NGO", NGOSchema);
 
 export default NGO;
