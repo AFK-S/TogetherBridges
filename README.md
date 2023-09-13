@@ -92,21 +92,21 @@ Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. S
 Here are some screenshots:
 
 <div align="center">
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/0b79fb84-b4d2-4a50-8156-5631f0f655a2" width="500" />
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/e87f326b-2f62-48f3-9edf-38b7007dca44" width="500" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/0b79fb84-b4d2-4a50-8156-5631f0f655a2" width="400" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/e87f326b-2f62-48f3-9edf-38b7007dca44" width="400" />
 </div>
 <div align="center">
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/e2662faa-aa9e-4c91-b7d3-17830956aa4e" width="500" />
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/78ca7663-821b-4a4c-900f-53f1f1047e2d" width="500" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/e2662faa-aa9e-4c91-b7d3-17830956aa4e" width="400" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/78ca7663-821b-4a4c-900f-53f1f1047e2d" width="400" />
 </div>
 <div align="center">
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/eb878616-d768-4524-aad5-8247a47256d4" width="500" />
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/2c3fe1fc-5399-45d0-b83e-8cc54dd04e59" width="500" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/eb878616-d768-4524-aad5-8247a47256d4" width="400" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/2c3fe1fc-5399-45d0-b83e-8cc54dd04e59" width="400" />
 </div>
 <div align="center">
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/46270a93-f48b-40db-b82d-ee9439398b9e" width="500" />
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/4401e53b-5caf-43e8-b5e9-3691e5fa323d" width="500" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/46270a93-f48b-40db-b82d-ee9439398b9e" width="400" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/4401e53b-5caf-43e8-b5e9-3691e5fa323d" width="400" />
 </div>
 <div align="center">
-  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/cc99f508-5631-4cb4-9296-090ced3a259b" width="500" />
+  <img src="https://github.com/AFK-S/TogetherBridges/assets/89718255/cc99f508-5631-4cb4-9296-090ced3a259b" width="400" />
 </div>
